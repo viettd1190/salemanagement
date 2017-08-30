@@ -51,3 +51,6 @@ F:\Project\Freelancer\salemanagement\SaleManagement.WebApp\bin\Antlr3.Runtime.pd
 F:\Project\Freelancer\salemanagement\SaleManagement.WebApp\bin\Newtonsoft.Json.xml
 F:\Project\Freelancer\salemanagement\SaleManagement.WebApp\obj\Debug\SaleManagement.WebApp.dll
 F:\Project\Freelancer\salemanagement\SaleManagement.WebApp\obj\Debug\SaleManagement.WebApp.pdb
+F:\Project\Freelancer\salemanagement\SaleManagement.WebApp\bin\NLog.config
+F:\Project\Freelancer\salemanagement\SaleManagement.WebApp\bin\NLog.dll
+F:\Project\Freelancer\salemanagement\SaleManagement.WebApp\bin\NLog.xml

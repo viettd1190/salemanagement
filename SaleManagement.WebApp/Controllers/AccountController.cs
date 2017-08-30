@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using SaleManagement.WebApp.Models;
+using SaleManagement.WebApp.Models.Response;
 
 namespace SaleManagement.WebApp.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         [AllowAnonymous]
         // GET: Account
@@ -22,18 +26,27 @@ namespace SaleManagement.WebApp.Controllers
         {
             if(ModelState.IsValid)
             {
-                if(string.Equals(model.Username,
-                                 "admin")
-                   && string.Equals(model.Password,
-                                    "123456"))
+                try
                 {
-                    Login(model,
-                          model.RememberMe);
-                    return RedirectToAction("Index",
-                                            "Home");
+                    List<LogOnResponse> result = AppUtil.ConvertTo<LogOnResponse>(ServiceClient.IDN_SmartPhone_Login(model.Username,
+                                                                                                                     model.Password));
+                    if (result.Count == 1)
+                    {
+                        if(result[0].Result==1)
+                        {
+                            Login(model,
+                                  model.RememberMe);
+                            return RedirectToAction("Index",
+                                                    "Home");
+                        }
+                    }
+                    ModelState.AddModelError("",
+                                             "Tên đăng nhập hoặc mật khẩu không chính xác");
                 }
-                ModelState.AddModelError("",
-                                         "Tên đăng nhập hoặc mật khẩu không chính xác");
+                catch (Exception e)
+                {
+                    Logger.Debug(e);
+                }
             }
             return View(model);
         }
