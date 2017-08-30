@@ -1,0 +1,32 @@
+[
+  {
+    "outputFileName": "Content/style.min.css",
+    "inputFiles": [
+      "Content/style.css"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/script.min.js",
+    "inputFiles": [
+      "Scripts/script.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/map.min.js",
+    "inputFiles": [
+      "Scripts/map.js"
+    ]
+  },
+  {
+    "outputFileName": "dist/js/adminlte.min.js",
+    "inputFiles": [
+      "dist/js/adminlte.js"
+    ]
+  },
+  {
+    "outputFileName": "dist/js/app.min.js",
+    "inputFiles": [
+      "dist/js/app.js"
+    ]
+  }
+]

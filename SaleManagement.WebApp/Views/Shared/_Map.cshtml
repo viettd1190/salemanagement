@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@AppUtil.WebTitle | @ViewBag.Title</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="@Url.Content("~/plugins/jquery-ui-1.11.0.custom/jquery-ui.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/bower_components/bootstrap/dist/css/bootstrap.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/bower_components/font-awesome/css/font-awesome.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/plugins/bootstrap-table/bootstrap-table.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/bower_components/Ionicons/css/ionicons.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/dist/css/AdminLTE.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/dist/css/skins/_all-skins.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/style.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/plugins/OpenLayers-2.11/theme/default/style.css")" type="text/css"/>
+    <style>
+        body {
+            overflow: hidden;
+        }
+
+        .navbar {
+            margin: 0;
+        }
+
+        .sidebar {
+            width: 100%;
+        }
+
+            .sidebar .sidebar-left {
+                width: 400px;
+                float: left;
+                background-color: white;
+                overflow: auto;
+                position: relative;
+            }
+
+            .sidebar .sidebar-right {
+                width: 400px;
+                float: right;
+                position: relative;
+            }
+
+            .sidebar .sidebar-right2 {
+                width: 100%;
+                position: relative;
+            }
+
+            .sidebar .sidebar-right3 {
+                width: 100%;
+                position: relative;
+                overflow-x: hidden;
+                overflow-y: auto;
+            }
+    </style>
+    @RenderSection("css", false)
+</head>
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
+    @Html.Partial("_TopMenuViewUserControl")
+    <div class="content-wrapper">
+        <div class="container">
+            <section class="content">
+                <div class="map-content sidebar" style="height:600px !important;">@RenderBody()</div>
+            </section>
+        </div>
+    </div>
+    @Html.Partial("_FooterViewUserControl")
+</div>
+<script src="@Url.Content("~/bower_components/jquery/dist/jquery.min.js")"></script>
+<script src="@Url.Content("~/plugins/jquery-ui-1.11.0.custom/jquery-ui.min.js")"></script>
+<script src="@Url.Content("~/bower_components/bootstrap/dist/js/bootstrap.min.js")"></script>
+<script src="@Url.Content("~/plugins/bootstrap-table/bootstrap-table.min.js")"></script>
+<script src="@Url.Content("~/plugins/bootstrap-table/extensions/mobile/bootstrap-table-mobile.js")"></script>
+<script src="@Url.Content("~/plugins/bootstrap-table/locale/bootstrap-table-vi-VN.min.js")"></script>
+<script src="@Url.Content("~/bower_components/jquery-slimscroll/jquery.slimscroll.min.js")"></script>
+<script src="@Url.Content("~/bower_components/fastclick/lib/fastclick.js")"></script>
+<script src="@Url.Content("~/dist/js/adminlte.min.js")"></script>
+<script src="@Url.Content("~/Scripts/script.min.js")"></script>
+<script src="@Url.Content("~/Scripts/map.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/plugins/OpenLayers-2.11/OpenLayers.js?")"> </script>
+<script type="text/javascript" src="https://maps-api-ssl.google.com/maps/api/js?key=AIzaSyCrM6qZ9jEGaj21G2kzZQ_iTe5_KIkZJ4M&libraries=places"> </script>
+<script>
+    var urlVehicleStatus='@Url.Content("~/Content/Images/Employee/")';
+    var Url={
+            get:function(url) {return '@Url.Content("~/")'+url;}
+        };
+    $(document).ready(function() {
+        $(window).resize(function () { FixMapContent(true); });
+        FixMapContent();
+    });
+    function FixMapContent(flag) {
+        $(".map-content").css('height',$(window).height()-41+'px');
+        $(".sidebar .sidebar-right").css('width',$(window).width()-400+'px');
+        if(updateMap&&flag) {
+            updateMap();
+        }
+    }
+</script>
+@RenderSection("scripts",
+               false)
+</body>
+</html>

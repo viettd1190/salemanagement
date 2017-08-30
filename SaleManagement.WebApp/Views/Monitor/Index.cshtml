@@ -1,0 +1,196 @@
+﻿@{
+    ViewBag.Title = "Danh sách trạm/điểm đỗ";
+    Layout = "~/Views/Shared/_Map.cshtml";
+}
+@section css{
+    <style>
+        .olControlEditingToolbar .olControlDrawFeaturePathItemInactive, .olControlEditingToolbar .olControlDrawFeaturePolygonItemInactive {
+            display: none;
+        }
+    </style>
+}
+@section scripts{
+    <script>
+        var urlVehiclePlate = '@Url.Action("GetStationImage", "Monitor")?plate=';
+        var vector, circleLayer, firstZoom = true;
+        var vector, currentId, currentCategoryId;
+        $(document).ready(function () {
+            initCompactMap('map', initialization);
+            $('#table').bootstrapTable({
+                    onClickRow: function (data) {
+                        if (data) {
+                            var feature = window.vector.getFeatureById('Point_' + data.Id);
+                            if (feature) {
+                                showPointInfo(feature, true);
+                            }
+                        }
+                    }
+                });
+        });
+        function showPointInfo(feature, forceZoom) {
+            removeCurrentPopup();
+            var point = getLonLatTransform(feature.data.X, feature.data.Y);
+            var popup = new OpenLayers.Popup.FramedCloud("popup", point, new OpenLayers.Size(300, 100), '<b>Tên</b>: ' + feature.data.Name + '<br/><b>Mô tả</b>: ' + Util.string.format(feature.data.Description) + '<br/><b>Bán kính(m)</b>: ' + feature.data.Radius, null, true);
+            popup.autoSize = false;
+            window.curPopU = popup;
+            map.addPopup(popup);
+            if (forceZoom) {
+                setCenter(feature.geometry);
+            }
+        }
+        function initialization() {
+            window.setupVmMap();
+            vector = new OpenLayers.Layer.Vector('Points');
+            circleLayer = new OpenLayers.Layer.Vector('Circle');
+            map.addLayers([circleLayer, vector]);
+            window.selectControl = new OpenLayers.Control.SelectFeature(window.vector);
+            window.map.addControl(window.selectControl);
+            window.selectControl.activate();
+            window.vector.events.on({ "featureselected": function (e) { showPointInfo(e.feature); } });
+            window.drag = new OpenLayers.Control.DragFeature(window.vector);
+            window.map.addControl(window.drag);
+            window.drag.onComplete = function (feature, pixel) {
+                if (confirm("Bạn có muốn di chuyển POI này không?")) {
+                    var lonlat = window.map.getLonLatFromPixel(pixel);
+                    var point = convertLonLattoPoint(lonlat);
+                    var tmp = getGoogleLonlatFromPoint(point);
+                    window.drag.cancel();
+                    edit(feature.data.Id, tmp.lon, tmp.lat);
+                }
+                feature.move(getLonLatTransform(feature.data.X, feature.data.Y));
+            };
+            var editTool = new OpenLayers.Control.EditingToolbar(window.vector);
+            window.map.addControl(editTool);
+            window.btnDrag = new OpenLayers.Control.ModifyFeature(window.vector, { 'displayClass': 'olControlModifyFeature' });
+            window.btnDrag.Deactivate = window.btnDrag.deactivate;
+            window.btnDrag.deactivate = function () {
+                window.drag.deactivate();
+                window.selectControl.activate();
+                this.Deactivate();
+            };
+            window.btnDrag.Activate = window.btnDrag.activate;
+            window.btnDrag.activate = function () {
+                this.Activate();
+                window.selectControl.deactivate();
+                window.drag.activate();
+            };
+            editTool.addControls(window.btnDrag);
+            for (var i = 0; i < editTool.controls.length; i++) {
+                if (editTool.controls[i].displayClass == "olControlDrawFeaturePoint") {
+                    editTool.controls[i].featureAdded = function (data) {
+                        var lonlat = getGoogleLonlatFromPoint(data.geometry);
+                        data.destroy();
+                        add(lonlat.lon, lonlat.lat);
+                    };
+                }
+            }
+            var point = new OpenLayers.LonLat(107.178314208984, 16.6212692260742);
+            point.transform(window.baseProjection, window.googleProjection);
+            window.map.setCenter(point, 5);
+            setTimeout(function () {
+                window.map.updateSize();
+                loadPoints();
+            }, 10);
+        }
+        function onWindowClose() { loadPoints(); }
+        function Delete(id) {
+            if (confirm("Bạn có chắc muốn xóa?")) {
+                $.post('@Url.Action("DeleteStation",
+                                    "Map")', { id: id }, function (data) {
+                    showNotification(data);
+                    loadPoints();
+                    remove();
+                });
+            }
+        }
+        function remove() {
+            removeCurrentPopup();
+            vector.removeAllFeatures();
+            circleLayer.removeAllFeatures();
+        }
+        function loadPoints() {
+            @*$.post('@Url.Action("GetPointListByJson")',function(data) {
+                if(data.Data) {
+                    vector.removeAllFeatures();
+                    if(data.Data.length>0) {
+                        $('#table').bootstrapTable('load',data.Data);
+                        for(var i=0;i<data.Data.length;i++) {
+                            createPOI(getPointTransform(data.Data[i].X,data.Data[i].Y),data.Data[i]);
+                        }
+                        if (firstZoom) {
+                            map.zoomToExtent(window.circleLayer.getDataExtent(), false);
+                            firstZoom = false;
+                        }
+                    } else {
+                        $('#table').bootstrapTable('load', data.Data);
+                    }
+                }
+            });*@
+        }
+        function createPOI(point,item) {
+            var feature=new OpenLayers.Feature.Vector(point,{},{externalGraphic:'../Content/images/Point/Poi'+item.CategoryId+'.png',graphicWidth:20,graphicHeight:20,graphicOpacity:1,pointRadius:10,graphicYOffset:-30,backgroundGraphic:window.urlVehiclePlate+item.Name,backgroundHeight:18,backgroundWidth:item.Name.length*8+4});;
+            feature.data=item;
+            feature.id='Point_'+item.Id;
+            window.vector.addFeatures(feature);
+            drawCircle(point,item);
+        }
+        function drawCircle(point,item) {
+            var cirStyle=OpenLayers.Util.extend({},OpenLayers.Feature.Vector.style["default"]);
+            var color=getRandomColor();
+            cirStyle.fillColor=color;
+            cirStyle.strokeColor=color;
+            cirStyle.fillOpacity=0.1;
+            var circle=new OpenLayers.Feature.Vector(OpenLayers.Geometry.Polygon.createRegularPolygon(point,item.Radius,40,0),null,cirStyle);
+            window.circleLayer.addFeatures(circle);
+        }
+        function add(lon, lat) {
+            $('#add-point').modal('show');
+            $('#add-point iframe').attr('src', '@Url.Action("AddStation")?x='+lon+'&y='+lat);
+        }
+        function closeWinAdd(obj) {
+            $('#add-point').modal('hide');
+            if(obj==1) {
+                showNotification({lv:1,msg:'["Cập nhập thành công"]'});
+                onWindowClose();
+            }
+        }
+        function edit(id,lon,lat) {
+            $('#edit-point').modal('show');
+            $('#edit-point iframe').attr('src','@Url.Action("EditStation")/'+id+'?x='+lon+'&y='+lat);
+        }
+        function closeWinEdit(obj) {
+            $('#edit-point').modal('hide');
+            if (obj == 1) {
+                showNotification({ lv: 1, msg: '["Cập nhập thành công"]' });
+                onWindowClose();
+            }
+        }
+        function getType(value, row, index) {
+            return '<img src=' + "@Url.Content("~/Content/images/Point/poi")" + row.CategoryId + '.png>';
+        }
+        function btnEdit(value, row, index) {
+            return [
+                    '<button class="btn btn-success" title="cập nhật" onclick="edit(' + row.Id + ',' + row.X/1e6 + ',' + row.Y/1e6 + ')" style="margin:0 3px 0 0">',
+                    '<span class="fa fa-pencil-square-o"></span>',
+                    '</button>',
+                    '<button class="btn btn-danger" title="xóa" onclick="Delete(' + row.Id + ')" style="margin:0 3px 0 0">',
+                    '<span class="fa fa-trash-o"></span>',
+                    '</button>'
+                ].join('');
+        }
+    </script>}
+<div class="sidebar-left">
+    <table id="table"
+           data-mobile-responsive="true"
+           data-page-size="20"
+           data-classes="table table-hover">
+        <thead>
+        <tr class="active">
+            <th data-valign="middle" data-width="45" data-align="center" data-sortable="true" data-formatter="getType"></th>
+            <th data-field="Name" data-valign="middle" data-sortable="true">Tên</th>
+            <th data-field="Id" data-width="100" data-formatter="btnEdit"></th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<div id="map" class="sidebar-right"></div>
