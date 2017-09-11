@@ -1,0 +1,105 @@
+﻿@model SaleManagement.WebApp2.Models.LogOnModel
+@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/_Empty.cshtml";
+}
+@section css{
+    <style type="text/css">
+        body { background-color: #fff; color: #333; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 75%; line-height: 1.428571429; }
+
+        @@media (max-width:500px) {
+            .login-form { width: 100% !important; }
+
+            .login-form .block-content { padding-left: 20px !important; }
+
+            .login-form form { margin-left: 0 !important; }
+
+            .image-logo { display: none !important; }
+
+            .block .head img { display: none !important; }
+        }
+
+        .block { -moz-border-radius: 5px; -moz-box-shadow: 0px 0px 10px #ccc !important; -webkit-border-radius: 5px; -webkit-box-shadow: 0px 0px 10px #ccc !important; border-radius: 5px; box-shadow: 0px 0px 10px #ccc !important; margin-bottom: 18px; }
+
+        .block .head { -moz-border-radius: 5px 5px 0px 0px; -webkit-border-radius: 5px 5px 0px 0px; background-color: #F6F6F6; background-image: -moz-linear-gradient(top,#FAFAFA,#F2F2F2); background-image: -webkit-gradient(linear,0 0,0 100%,from(#FAFAFA),to(#F2F2F2)); background-image: -webkit-linear-gradient(top,#FAFAFA,#F2F2F2); background-repeat: repeat-x; border: 1px solid #CCC; border-radius: 5px 5px 0px 0px; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFAFAFA',endColorstr='#FFF2F2F2',GradientType=0); height: 54px; line-height: 54px; padding: 0px 20px; }
+
+        .block .head h2 { color: #555; float: left; font-size: 18px; line-height: 36px; margin: 9px 0px; text-shadow: 1px 1px 0 white; text-transform: uppercase;}
+
+        .block-content { -moz-border-radius: 0px 0px 5px 5px; -webkit-border-radius: 0px 0px 5px 5px; background-color: white; border: 1px solid #CCC; border-radius: 0px 0px 5px 5px; border-top: none; display: block; font-family: sans-serif; padding-bottom: 20px; position: relative; }
+
+        .block-content form { padding-top: 10px; }
+
+        .block-content input.input-form { font-size: 14px; }
+
+        .block-content .item-option { float: left; }
+
+        .block-content .item-option input { margin-bottom: 5px; }
+
+        .editor-item { clear: both; margin: 0px 0px 10px 0px; }
+
+        .login-form { margin: 30px auto; width: 500px; }
+
+        .login-form .block-content { padding-bottom: 20px; padding-right: 20px; }
+
+        .login-form form { margin-left: 200px; position: relative; }
+
+        .login-form form .input-form { margin-top: 5px; }
+
+        .forgot-password { margin-top: 10px; }
+
+        .hotline { font-size: 16px; font-weight: bold; padding: 10px; }
+
+        .image-logo { left: 10px; position: absolute; text-align: center; top: 20px; }
+
+        .logo { margin: 0 auto; margin-top: 20px; width: 325px; }
+
+        .form-control { width: 100%; }
+
+        input[type="text"], input[type="password"] { -moz-transition: border linear .2s,box-shadow linear .2s; -o-transition: border linear .2s,box-shadow linear .2s; -webkit-transition: border linear .2s,box-shadow linear .2s; background-color: #fff; border: 1px solid #ccc; border-radius: 5px; box-shadow: inset 0 1px 1px rgba(0,0,0,.075); padding: 5px; transition: border linear .2s,box-shadow linear .2s; }
+
+        input[type="button"], input[type="submit"] { margin-right: 5px; padding: 5px 20px; }
+
+        input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:focus { -moz-box-shadow: 0 0 10px rgba(90,166,237,.6) !important; -webkit-box-shadow: 0 0 10px rgba(90,166,237,.6) !important; border: 1px solid #0b79ea; border-radius: 5px; box-shadow: 0 0 10px rgba(90,166,237,.6) !important; outline: none; }
+    </style>
+}
+<div class="logo">
+    <img src="@Url.Content("~/Content/Images/1taxi.png")" height="100"/>
+</div>
+<div class="block login-form">
+    <div class="head">
+        <h2>
+            @AppUtil.WebTitle.ToUpper()
+        </h2>
+    </div>
+    <div class="block-content">
+        <div class="image-logo">
+            <img src="@Url.Content("~/Content/images/car.png")"/><br />
+            <div class="hotline">SĐT:9999 9999</div>
+        </div>
+        <form method="POST">
+            @Html.ValidationSummary()
+            <div class="editor-item">
+                <label>Tên đăng nhập (*)</label><br />@Html.TextBoxFor(c => c.Username,
+                                                                       new
+                                                                       {
+                                                                               @class = "input-form form-control",
+                                                                               placeholder="Tên đăng nhập"
+                                                                       })
+            </div>
+            <div class="editor-item">
+                <label>Mật khẩu (*)</label><br />@Html.PasswordFor(c => c.Password,
+                                                                   new
+                                                                   {
+                                                                           @class = "input-form form-control",
+                                                                           placeholder="Mật khẩu"
+                                                                   })
+            </div>
+            <div class="editor-item">
+                <input class="btn btn-default" type="submit" value="Đăng nhập" />@Html.CheckBoxFor(m => m.RememberMe) <label for="RememberMe">Ghi nhớ tài khoản?</label>
+            </div>
+            <div class="clear"></div>
+        </form>
+    </div>
+    <div class="clear"></div>
+</div>
+

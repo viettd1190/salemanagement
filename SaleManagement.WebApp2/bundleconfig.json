@@ -1,0 +1,32 @@
+[
+  {
+    "outputFileName": "Content/Site.min.css",
+    "inputFiles": [
+      "Content/Site.css"
+    ]
+  },
+  {
+    "outputFileName": "Content/style.min.css",
+    "inputFiles": [
+      "Content/style.css"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/script.min.js",
+    "inputFiles": [
+      "Scripts/script.js"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/vm.map.min.js",
+    "inputFiles": [
+      "Scripts/vm.map.js"
+    ]
+  },
+  {
+    "outputFileName": "Content/bootstrap/css/bootstrap.min.css",
+    "inputFiles": [
+      "Content/bootstrap/css/bootstrap.css"
+    ]
+  }
+]

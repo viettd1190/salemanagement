@@ -120,81 +120,81 @@ function paddingDisplay2Number(value) {
     }
     return value;
 }
-function getTimeFromJson(tick) {
-    if (tick) {
-        if (tick > 0) {
-            return new Date(tick);
-        }
-    }
-    return null;
-}
-function getTime(seconds) {
-    if (seconds == 0) {
-        return '';
-    }
-    var date = getBaseTime();
-    date.setSeconds(seconds);
-    return date;
-}
-function getBaseTime() { return new Date(2010, 0, 1, 0, 0, 0, 0); }
-function getSecounds2Dates(date1, date2) { return parseInt((date1.getTime() - date2.getTime()) / 1000); }
-function formatDateTime(value) {
-    if (value) {
-        return paddingDisplay2Number(value.getDate()) + '-' + paddingDisplay2Number(value.getMonth() + 1) + ' ' + paddingDisplay2Number(value.getHours()) + ':' + paddingDisplay2Number(value.getMinutes()) + ':' + paddingDisplay2Number(value.getSeconds());
-    }
-    return '';
-}
-function formatDate(value) {
-    if (value) {
-        return paddingDisplay2Number(value.getDate()) + '-' + paddingDisplay2Number(value.getMonth() + 1) + '-' + paddingDisplay2Number(value.getYear());
-    }
-    return '';
-}
-function formatTime(value) {
-    if (value) {
-        return paddingDisplay2Number(value.getHours()) + ':' + paddingDisplay2Number(value.getMinutes()) + ':' + paddingDisplay2Number(value.getSeconds());
-    }
-    return '';
-}
-function formatTime2(value) {
-    if (value) {
-        return paddingDisplay2Number(value.getHours()) + ':' + paddingDisplay2Number(value.getMinutes());
-    }
-    return '';
-}
-function getDuration(value) {
-    if (value[17] > 0) {
-        var results = '';
-        if (value[9][3] > 0) {
-            var days = value[9][3] / 1440;
-            var pad = value[9][3] % 1440;
-            if (days > 0) {
-                results = days + ' d';
-            }
-            results = results + paddingDisplay2Number(pad / 60) + ':' + paddingDisplay2Number(pad % 60);
-        } else {
-            results = '00:00';
-        }
-        return results;
-    }
-    return '00:00';
-}
-var regions = [];
-function getRegionById(id, pad) {
-    if (regions[id]) {
-        return regions[id] + pad;
-    }
-    return '' + pad;
-}
-function getRegion(regionId) { return getRegionById(regionId & 16777215, ' ') + getRegionById(regionId & 65535, ' ') + getRegionById(regionId & 255, ''); }
-var regions2 = [];
-function getRegionById2(id, pad) {
-    if (regions2[id]) {
-        return regions2[id] + pad;
-    }
-    return '' + pad;
-}
-function getRegion2(regionId) { return getRegionById2(regionId & 16777215, ' ') + getRegionById2(regionId & 65535, ' ') + getRegionById2(regionId & 255, ''); }
+//function getTimeFromJson(tick) {
+//    if (tick) {
+//        if (tick > 0) {
+//            return new Date(tick);
+//        }
+//    }
+//    return null;
+//}
+//function getTime(seconds) {
+//    if (seconds == 0) {
+//        return '';
+//    }
+//    var date = getBaseTime();
+//    date.setSeconds(seconds);
+//    return date;
+//}
+//function getBaseTime() { return new Date(2010, 0, 1, 0, 0, 0, 0); }
+//function getSecounds2Dates(date1, date2) { return parseInt((date1.getTime() - date2.getTime()) / 1000); }
+//function formatDateTime(value) {
+//    if (value) {
+//        return paddingDisplay2Number(value.getDate()) + '-' + paddingDisplay2Number(value.getMonth() + 1) + ' ' + paddingDisplay2Number(value.getHours()) + ':' + paddingDisplay2Number(value.getMinutes()) + ':' + paddingDisplay2Number(value.getSeconds());
+//    }
+//    return '';
+//}
+//function formatDate(value) {
+//    if (value) {
+//        return paddingDisplay2Number(value.getDate()) + '-' + paddingDisplay2Number(value.getMonth() + 1) + '-' + paddingDisplay2Number(value.getYear());
+//    }
+//    return '';
+//}
+//function formatTime(value) {
+//    if (value) {
+//        return paddingDisplay2Number(value.getHours()) + ':' + paddingDisplay2Number(value.getMinutes()) + ':' + paddingDisplay2Number(value.getSeconds());
+//    }
+//    return '';
+//}
+//function formatTime2(value) {
+//    if (value) {
+//        return paddingDisplay2Number(value.getHours()) + ':' + paddingDisplay2Number(value.getMinutes());
+//    }
+//    return '';
+//}
+//function getDuration(value) {
+//    if (value[17] > 0) {
+//        var results = '';
+//        if (value[9][3] > 0) {
+//            var days = value[9][3] / 1440;
+//            var pad = value[9][3] % 1440;
+//            if (days > 0) {
+//                results = days + ' d';
+//            }
+//            results = results + paddingDisplay2Number(pad / 60) + ':' + paddingDisplay2Number(pad % 60);
+//        } else {
+//            results = '00:00';
+//        }
+//        return results;
+//    }
+//    return '00:00';
+//}
+//var regions = [];
+//function getRegionById(id, pad) {
+//    if (regions[id]) {
+//        return regions[id] + pad;
+//    }
+//    return '' + pad;
+//}
+//function getRegion(regionId) { return getRegionById(regionId & 16777215, ' ') + getRegionById(regionId & 65535, ' ') + getRegionById(regionId & 255, ''); }
+//var regions2 = [];
+//function getRegionById2(id, pad) {
+//    if (regions2[id]) {
+//        return regions2[id] + pad;
+//    }
+//    return '' + pad;
+//}
+//function getRegion2(regionId) { return getRegionById2(regionId & 16777215, ' ') + getRegionById2(regionId & 65535, ' ') + getRegionById2(regionId & 255, ''); }
 function Gis() { }
 Gis.deg2Rad = function (deg) { return (deg * Math.PI / 180.0); };
 Gis.getDistance = function (x1, y1, x2, y2) { return this.getDistances(x1 / 1e6, y1 / 1e6, x2 / 1e6, y2 / 1e6); };
@@ -223,14 +223,14 @@ function formatDistance(value) {
     return Util.number.format(parseInt(value)) + ' m';
 }
 function getLonLatBaseOnAddress(address, callback) {
-    $.get('https://maps.googleapis.com/maps/api/geocode/json', { sensor: false, language: 'vi-VN', address: address + ' ' + window.baseCity + ' Viet Nam' }, function (data) {
+    $.get('http://maps.googleapis.com/maps/api/geocode/json', { sensor: false, language: 'vi-VN', address: address + ' ' + window.baseCity + ' Viet Nam' }, function (data) {
         if (callback != null) {
             callback(data);
         }
     });
 }
 function getLonLatBaseOnAddress2(address, callback) {
-    $.get('https://maps.googleapis.com/maps/api/geocode/json', { sensor: false, language: 'vi-VN', address: address + ' Viet Nam' }, function (data) {
+    $.get('http://maps.googleapis.com/maps/api/geocode/json', { sensor: false, language: 'vi-VN', address: address + ' Viet Nam' }, function (data) {
         if (callback != null) {
             callback(data);
         }

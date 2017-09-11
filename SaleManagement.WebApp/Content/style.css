@@ -20,3 +20,4 @@
     position: relative;
     width: 100%;
 }
+.bootstrap-table tr.row-active {color:#fff !important;background-color:#2ba1eb !important;}

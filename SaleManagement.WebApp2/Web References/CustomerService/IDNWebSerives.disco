@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://idn.com.vn/BSGKG_WebSrv/IDNWebSerives.asmx?wsdl" docRef="http://idn.com.vn/BSGKG_WebSrv/IDNWebSerives.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://idn.com.vn/BSGKG_WebSrv/IDNWebSerives.asmx" xmlns:q1="http://idn.com.vn/BSGKG_WebSrv/" binding="q1:IDNWebSerivesSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://idn.com.vn/BSGKG_WebSrv/IDNWebSerives.asmx" xmlns:q2="http://idn.com.vn/BSGKG_WebSrv/" binding="q2:IDNWebSerivesSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

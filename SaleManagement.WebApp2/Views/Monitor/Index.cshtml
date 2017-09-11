@@ -1,0 +1,202 @@
+﻿@{
+    ViewBag.Title = "Theo dõi nhân viên";
+    Layout = "~/Views/Shared/_Map.cshtml";
+}
+@section css{
+    <style>
+        .olPopupCloseBox {display: none;}
+        #popup_FrameDecorationDiv_1{display:none;}
+        #popup_FrameDecorationDiv_2{display:none;}
+        #popup_FrameDecorationDiv_3{display:none;}
+    </style>
+}
+@section js{
+    <script>
+        var urlEmpName = '@Url.Action("GetEmployeeName", "Monitor")?name=';
+        var vector, firstZoom = true;
+        var currentId, currentCategoryId;
+        $(document).ready(function () {
+            initCompactMap('map', initialization);
+            loadBranches();
+            loadProvinces();
+            loadPosition();
+            loadGroups();
+            $('#table').bootstrapTable({
+                    onClickRow: function (data) {
+                        if (data) {
+                            var feature = window.vector.getFeatureById('Point_' + data.MyId);
+                            if (feature) {
+                                showPointInfo(feature, true);
+                            }
+                        }
+                    }
+                });
+            $('#txtSearchBox').keydown(function (key) {
+                if (key) {
+                    if (key.keyCode == 13) {
+                        refreshEmployees();
+                    }
+                }
+            });
+        });
+        function loadBranches() {
+            $.post('@Url.Action("GetBranches")',
+                '',
+                function(data) {
+                    if(data) {
+                        for(var i=0;i<data.length;i++) {
+                            $('#txtBranch').append('<option value="'+data[i].ProCode+'">'+data[i].ProName+'</option>');
+                        }
+                    }
+                });
+        }
+        function loadProvinces() {
+            $.post('@Url.Action("GetProvinces")',
+                '',
+                function(data) {
+                    if(data) {
+                        for(var i=0;i<data.length;i++) {
+                            $('#txtProvince').append('<option value="'+
+                                data[i].ProCode+
+                                '">'+
+                                data[i].ProName+
+                                '</option>');
+                        }
+                    }
+                });
+        }
+        function loadPosition() {
+            $.post('@Url.Action("GetPositions")',
+                '',
+                function(data) {
+                    if(data) {
+                        for(var i=0;i<data.length;i++) {
+                            $('#txtPosition').append('<option value="'+
+                                data[i].ProCode+
+                                '">'+
+                                data[i].ProName+
+                                '</option>');
+                        }
+                    }
+                });
+        }
+        function loadGroups() {
+            $.post('@Url.Action("GetEmpGroups")',
+                '',
+                function(data) {
+                    if(data) {
+                        for(var i=0;i<data.length;i++) {
+                            $('#txtGroup').append('<option value="'+data[i].GrpCode+'">'+data[i].PosName+'</option>');
+                        }
+                    }
+                });
+        }
+        function showPointInfo(feature, forceZoom) {
+            removeCurrentPopup();
+            var point = getLonLatTransform(feature.data.CurrLong * 1e6, feature.data.CurrLat*1e6);
+            var popup=new OpenLayers.Popup.FramedCloud("popup",
+                point,
+                new OpenLayers.Size(300,100),
+                '<b>Mã nhân viên</b>: '+
+                formatValueNull(feature.data.EmpId) +
+                '<br/><b>Tên nhân viên</b>: '+
+                formatValueNull(feature.data.EmpFullName) +
+                '<br/><b>SĐT</b>: '+
+                formatValueNull(feature.data.Mobile)+
+                '<br/><b>Cập nhật</b>: ' +
+                formatDateTime(feature.data.LastUpdate),
+                null,
+                true);
+            popup.autoSize = false;
+            window.curPopU = popup;
+            map.addPopup(popup);
+            if (forceZoom) {
+                setCenter(feature.geometry);
+            }
+        }
+        function initialization() {
+            window.setupVmMap();
+            vector = new OpenLayers.Layer.Vector('Points');
+            map.addLayers([vector]);
+            window.selectControl = new OpenLayers.Control.SelectFeature(window.vector);
+            window.map.addControl(window.selectControl);
+            window.selectControl.activate();
+            window.vector.events.on({ "featureselected": function (e) { showPointInfo(e.feature); } });
+            var point = new OpenLayers.LonLat(107.178314208984, 16.6212692260742);
+            point.transform(window.baseProjection, window.googleProjection);
+            window.map.setCenter(point, 5);
+            setTimeout(function () {
+                window.map.updateSize();
+                refreshEmployees();
+            }, 10);
+        }
+        function remove() {
+            removeCurrentPopup();
+            vector.removeAllFeatures();
+        }
+        function refreshEmployees() {
+            var search = $('#txtSearchBox').val();
+            var branch = $('#txtBranch').val();
+            var province = $('#txtProvince').val();
+            var position = $('#txtPosition').val();
+            var group = $('#txtGroup').val();
+            $.post('@Url.Action("RefreshEmployees")',
+                {branch:branch,province:province,position:position,empGrp:group,search:search},
+                function(data) {
+                    $('#table').bootstrapTable('load', data);
+                    for(var i=0;i<data.length;i++) {
+                        createPOI(convertLonLattoPoint(getLonLatTransform(data[i].CurrLong * 1e6, data[i].CurrLat * 1e6)), data[i]);
+                    }
+                    if (firstZoom) {
+                        map.zoomToExtent(window.vector.getDataExtent(), false);
+                        firstZoom = false;
+                    }
+                });
+        }
+        function createPOI(point,item) {
+            var feature=new OpenLayers.Feature.Vector(point,
+                {},
+                {
+                    externalGraphic:item.PicLink,
+                    graphicWidth:20,
+                    graphicHeight:20,
+                    graphicOpacity:1,
+                    pointRadius:10,
+                    graphicYOffset:-30,
+                    backgroundGraphic: window.urlEmpName + item.EmpFullName,
+                    backgroundHeight:18,
+                    backgroundWidth: item.EmpFullName.length * 8 + 4
+                });
+            feature.data=item;
+            feature.id='Point_'+item.MyId;
+            window.vector.addFeatures(feature);
+        }
+    </script>}
+<div class="sidebar-left">
+    <table id="table"
+           data-mobile-responsive="true"
+           data-page-size="20"
+           data-classes="table table-hover">
+        <thead>
+        <tr class="active">
+            <th data-valign="middle" data-width="45" data-field="Id" data-align="center" data-rowspan="2" data-formatter="runningFormatter">STT</th>
+            <th data-valign="middle" data-rowspan="2" data-field="EmpFullName" data-sortable="true">Nhân viên</th>
+            <th data-valign="middle" data-colspan="2">Viếng thăm</th>
+            <th data-valign="middle" data-colspan="2">Đơn hàng</th>
+            <th data-valign="middle" data-colspan="2">Doanh số</th>
+            <th data-valign="middle" data-colspan="2">Cập nhật</th>
+        </tr>
+        <tr class="active">
+            <th data-valign="middle" data-field="CheckInPlan" data-sortable="true" data-align="right" data-formatter="formatValueNull">KH</th>
+            <th data-valign="middle" data-field="CheckInFinish" data-sortable="true" data-align="right" data-formatter="formatValueNull">TH</th>
+            <th data-valign="middle" data-field="Name" data-sortable="true" data-align="right" data-formatter="formatValueNull">KH</th>
+            <th data-valign="middle" data-field="Name" data-sortable="true" data-align="right" data-formatter="formatValueNull">TH</th>
+            <th data-valign="middle" data-field="Name" data-sortable="true" data-align="right" data-formatter="formatValueNull">KH (Triệu)</th>
+            <th data-valign="middle" data-field="Name" data-sortable="true" data-align="right" data-formatter="formatValueNull">TH (Triệu)</th>
+            <th data-valign="middle" data-field="LastUpdate" data-sortable="true" data-formatter="formatDateTime" data-align="center">TG</th>
+            <th data-valign="middle" data-field="Name" data-sortable="true" data-align="right" data-formatter="formatValueNull">(%) Pin</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<div id="map" class="sidebar-right"></div>

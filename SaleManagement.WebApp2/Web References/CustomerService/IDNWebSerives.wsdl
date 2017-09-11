@@ -1,0 +1,2189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://idn.com.vn/BSGKG_WebSrv/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://idn.com.vn/BSGKG_WebSrv/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://idn.com.vn/BSGKG_WebSrv/">
+      <s:element name="IDN_DMS_EmpCurrLocation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Branch" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Province" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Position" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EmpGrp" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CurrDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="FreeText" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_DMS_EmpCurrLocationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_DMS_EmpCurrLocationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_DMS_EmpGroup_Load">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_DMS_EmpGroup_LoadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_DMS_EmpGroup_LoadResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_DMS_Province_Load">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_DMS_Province_LoadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_DMS_Province_LoadResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_DMS_Branch_Load">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_DMS_Branch_LoadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_DMS_Branch_LoadResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_DMS_Position_Load">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_DMS_Position_LoadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_DMS_Position_LoadResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_DMS_OCRD_Search">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Route" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Channel" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Group" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="SalesManId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="FreeText" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_DMS_OCRD_SearchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_DMS_OCRD_SearchResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_ItemListSales_Search">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FreeText" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_ItemListSales_SearchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_ItemListSales_SearchResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_ROUTE_Load">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_ROUTE_LoadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_ROUTE_LoadResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_OSLP_Load">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_OSLP_LoadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_OSLP_LoadResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_CUST_GRP_Load">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_CUST_GRP_LoadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_CUST_GRP_LoadResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_CHANNEL_Load">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_CHANNEL_LoadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_CHANNEL_LoadResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_SmartPhone_Login">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_SmartPhone_LoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_SmartPhone_LoginResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_DMS_EmpCurrLocation_Load">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_DMS_EmpCurrLocation_LoadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_DMS_EmpCurrLocation_LoadResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_DMS_Employee_Monitor_Load">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="MonitorDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_DMS_Employee_Monitor_LoadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_DMS_Employee_Monitor_LoadResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_DMS_CustVisited_Emp_Load">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EmpId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="MonitorDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_DMS_CustVisited_Emp_LoadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_DMS_CustVisited_Emp_LoadResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_WareHouseList">
+        <s:complexType />
+      </s:element>
+      <s:element name="IDN_WareHouseListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_WareHouseListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_InOutReason">
+        <s:complexType />
+      </s:element>
+      <s:element name="IDN_InOutReasonResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_InOutReasonResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_ItemList">
+        <s:complexType />
+      </s:element>
+      <s:element name="IDN_ItemListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_ItemListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_PDA_BIN_ByWhs_Check">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WhsCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BinCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_PDA_BIN_ByWhs_CheckResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_PDA_BIN_ByWhs_CheckResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_ItemInfo_ByBarCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BarCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_ItemInfo_ByBarCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_ItemInfo_ByBarCodeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_GetBinCodefromBarCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BarCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WhsCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_GetBinCodefromBarCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_GetBinCodefromBarCodeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_InsertItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DocDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="BarCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ItemName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Quantity" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="UoM" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WhsCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BINCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReasonCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ToWhsCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ToBINCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_InsertItemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_InsertItemResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_DMS_OCRD_Load">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_DMS_OCRD_LoadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_DMS_OCRD_LoadResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_DMS_OCRD_LoadbyCardcode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CardCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_DMS_OCRD_LoadbyCardcodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_DMS_OCRD_LoadbyCardcodeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DataTable" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+            <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="IDN_DMS_EmpCurrLocationSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_DMS_EmpCurrLocation" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_EmpCurrLocationSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_DMS_EmpCurrLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_EmpGroup_LoadSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_DMS_EmpGroup_Load" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_EmpGroup_LoadSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_DMS_EmpGroup_LoadResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_Province_LoadSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_DMS_Province_Load" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_Province_LoadSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_DMS_Province_LoadResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_Branch_LoadSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_DMS_Branch_Load" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_Branch_LoadSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_DMS_Branch_LoadResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_Position_LoadSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_DMS_Position_Load" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_Position_LoadSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_DMS_Position_LoadResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_OCRD_SearchSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_DMS_OCRD_Search" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_OCRD_SearchSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_DMS_OCRD_SearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_ItemListSales_SearchSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_ItemListSales_Search" />
+  </wsdl:message>
+  <wsdl:message name="IDN_ItemListSales_SearchSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_ItemListSales_SearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_ROUTE_LoadSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_ROUTE_Load" />
+  </wsdl:message>
+  <wsdl:message name="IDN_ROUTE_LoadSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_ROUTE_LoadResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_OSLP_LoadSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_OSLP_Load" />
+  </wsdl:message>
+  <wsdl:message name="IDN_OSLP_LoadSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_OSLP_LoadResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_CUST_GRP_LoadSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_CUST_GRP_Load" />
+  </wsdl:message>
+  <wsdl:message name="IDN_CUST_GRP_LoadSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_CUST_GRP_LoadResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_CHANNEL_LoadSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_CHANNEL_Load" />
+  </wsdl:message>
+  <wsdl:message name="IDN_CHANNEL_LoadSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_CHANNEL_LoadResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_SmartPhone_LoginSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_SmartPhone_Login" />
+  </wsdl:message>
+  <wsdl:message name="IDN_SmartPhone_LoginSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_SmartPhone_LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_EmpCurrLocation_LoadSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_DMS_EmpCurrLocation_Load" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_EmpCurrLocation_LoadSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_DMS_EmpCurrLocation_LoadResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_Employee_Monitor_LoadSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_DMS_Employee_Monitor_Load" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_Employee_Monitor_LoadSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_DMS_Employee_Monitor_LoadResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_CustVisited_Emp_LoadSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_DMS_CustVisited_Emp_Load" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_CustVisited_Emp_LoadSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_DMS_CustVisited_Emp_LoadResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_WareHouseListSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_WareHouseList" />
+  </wsdl:message>
+  <wsdl:message name="IDN_WareHouseListSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_WareHouseListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_InOutReasonSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_InOutReason" />
+  </wsdl:message>
+  <wsdl:message name="IDN_InOutReasonSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_InOutReasonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_ItemListSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_ItemList" />
+  </wsdl:message>
+  <wsdl:message name="IDN_ItemListSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_ItemListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_PDA_BIN_ByWhs_CheckSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_PDA_BIN_ByWhs_Check" />
+  </wsdl:message>
+  <wsdl:message name="IDN_PDA_BIN_ByWhs_CheckSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_PDA_BIN_ByWhs_CheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_ItemInfo_ByBarCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_ItemInfo_ByBarCode" />
+  </wsdl:message>
+  <wsdl:message name="IDN_ItemInfo_ByBarCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_ItemInfo_ByBarCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_GetBinCodefromBarCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_GetBinCodefromBarCode" />
+  </wsdl:message>
+  <wsdl:message name="IDN_GetBinCodefromBarCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_GetBinCodefromBarCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_InsertItemSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_InsertItem" />
+  </wsdl:message>
+  <wsdl:message name="IDN_InsertItemSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_InsertItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_OCRD_LoadSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_DMS_OCRD_Load" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_OCRD_LoadSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_DMS_OCRD_LoadResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_OCRD_LoadbyCardcodeSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_DMS_OCRD_LoadbyCardcode" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_OCRD_LoadbyCardcodeSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_DMS_OCRD_LoadbyCardcodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_EmpCurrLocationHttpGetIn">
+    <wsdl:part name="UserCode" type="s:string" />
+    <wsdl:part name="Branch" type="s:string" />
+    <wsdl:part name="Province" type="s:string" />
+    <wsdl:part name="Position" type="s:string" />
+    <wsdl:part name="EmpGrp" type="s:string" />
+    <wsdl:part name="CurrDate" type="s:string" />
+    <wsdl:part name="FreeText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_EmpCurrLocationHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_EmpGroup_LoadHttpGetIn">
+    <wsdl:part name="UserCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_EmpGroup_LoadHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_Province_LoadHttpGetIn">
+    <wsdl:part name="UserCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_Province_LoadHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_Branch_LoadHttpGetIn">
+    <wsdl:part name="UserCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_Branch_LoadHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_Position_LoadHttpGetIn">
+    <wsdl:part name="UserCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_Position_LoadHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_OCRD_SearchHttpGetIn">
+    <wsdl:part name="UserCode" type="s:string" />
+    <wsdl:part name="Route" type="s:string" />
+    <wsdl:part name="Channel" type="s:string" />
+    <wsdl:part name="Group" type="s:string" />
+    <wsdl:part name="SalesManId" type="s:string" />
+    <wsdl:part name="FreeText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_OCRD_SearchHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_ItemListSales_SearchHttpGetIn">
+    <wsdl:part name="UserCode" type="s:string" />
+    <wsdl:part name="FreeText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_ItemListSales_SearchHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_ROUTE_LoadHttpGetIn">
+    <wsdl:part name="UserCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_ROUTE_LoadHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_OSLP_LoadHttpGetIn">
+    <wsdl:part name="UserCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_OSLP_LoadHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_CUST_GRP_LoadHttpGetIn">
+    <wsdl:part name="UserCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_CUST_GRP_LoadHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_CHANNEL_LoadHttpGetIn">
+    <wsdl:part name="UserCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_CHANNEL_LoadHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_SmartPhone_LoginHttpGetIn">
+    <wsdl:part name="UserCode" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_SmartPhone_LoginHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_EmpCurrLocation_LoadHttpGetIn">
+    <wsdl:part name="UserCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_EmpCurrLocation_LoadHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_Employee_Monitor_LoadHttpGetIn">
+    <wsdl:part name="UserCode" type="s:string" />
+    <wsdl:part name="MonitorDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_Employee_Monitor_LoadHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_CustVisited_Emp_LoadHttpGetIn">
+    <wsdl:part name="EmpId" type="s:string" />
+    <wsdl:part name="MonitorDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_CustVisited_Emp_LoadHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_WareHouseListHttpGetIn" />
+  <wsdl:message name="IDN_WareHouseListHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_InOutReasonHttpGetIn" />
+  <wsdl:message name="IDN_InOutReasonHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_ItemListHttpGetIn" />
+  <wsdl:message name="IDN_ItemListHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_PDA_BIN_ByWhs_CheckHttpGetIn">
+    <wsdl:part name="WhsCode" type="s:string" />
+    <wsdl:part name="BinCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_PDA_BIN_ByWhs_CheckHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_ItemInfo_ByBarCodeHttpGetIn">
+    <wsdl:part name="BarCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_ItemInfo_ByBarCodeHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_GetBinCodefromBarCodeHttpGetIn">
+    <wsdl:part name="BarCode" type="s:string" />
+    <wsdl:part name="WhsCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_GetBinCodefromBarCodeHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_InsertItemHttpGetIn">
+    <wsdl:part name="DocDate" type="s:string" />
+    <wsdl:part name="BarCode" type="s:string" />
+    <wsdl:part name="ItemName" type="s:string" />
+    <wsdl:part name="Quantity" type="s:string" />
+    <wsdl:part name="UoM" type="s:string" />
+    <wsdl:part name="WhsCode" type="s:string" />
+    <wsdl:part name="BINCode" type="s:string" />
+    <wsdl:part name="ReasonCode" type="s:string" />
+    <wsdl:part name="ToWhsCode" type="s:string" />
+    <wsdl:part name="ToBINCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_InsertItemHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_OCRD_LoadHttpGetIn">
+    <wsdl:part name="UserCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_OCRD_LoadHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_OCRD_LoadbyCardcodeHttpGetIn">
+    <wsdl:part name="CardCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_OCRD_LoadbyCardcodeHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_EmpCurrLocationHttpPostIn">
+    <wsdl:part name="UserCode" type="s:string" />
+    <wsdl:part name="Branch" type="s:string" />
+    <wsdl:part name="Province" type="s:string" />
+    <wsdl:part name="Position" type="s:string" />
+    <wsdl:part name="EmpGrp" type="s:string" />
+    <wsdl:part name="CurrDate" type="s:string" />
+    <wsdl:part name="FreeText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_EmpCurrLocationHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_EmpGroup_LoadHttpPostIn">
+    <wsdl:part name="UserCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_EmpGroup_LoadHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_Province_LoadHttpPostIn">
+    <wsdl:part name="UserCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_Province_LoadHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_Branch_LoadHttpPostIn">
+    <wsdl:part name="UserCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_Branch_LoadHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_Position_LoadHttpPostIn">
+    <wsdl:part name="UserCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_Position_LoadHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_OCRD_SearchHttpPostIn">
+    <wsdl:part name="UserCode" type="s:string" />
+    <wsdl:part name="Route" type="s:string" />
+    <wsdl:part name="Channel" type="s:string" />
+    <wsdl:part name="Group" type="s:string" />
+    <wsdl:part name="SalesManId" type="s:string" />
+    <wsdl:part name="FreeText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_OCRD_SearchHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_ItemListSales_SearchHttpPostIn">
+    <wsdl:part name="UserCode" type="s:string" />
+    <wsdl:part name="FreeText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_ItemListSales_SearchHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_ROUTE_LoadHttpPostIn">
+    <wsdl:part name="UserCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_ROUTE_LoadHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_OSLP_LoadHttpPostIn">
+    <wsdl:part name="UserCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_OSLP_LoadHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_CUST_GRP_LoadHttpPostIn">
+    <wsdl:part name="UserCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_CUST_GRP_LoadHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_CHANNEL_LoadHttpPostIn">
+    <wsdl:part name="UserCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_CHANNEL_LoadHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_SmartPhone_LoginHttpPostIn">
+    <wsdl:part name="UserCode" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_SmartPhone_LoginHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_EmpCurrLocation_LoadHttpPostIn">
+    <wsdl:part name="UserCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_EmpCurrLocation_LoadHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_Employee_Monitor_LoadHttpPostIn">
+    <wsdl:part name="UserCode" type="s:string" />
+    <wsdl:part name="MonitorDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_Employee_Monitor_LoadHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_CustVisited_Emp_LoadHttpPostIn">
+    <wsdl:part name="EmpId" type="s:string" />
+    <wsdl:part name="MonitorDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_CustVisited_Emp_LoadHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_WareHouseListHttpPostIn" />
+  <wsdl:message name="IDN_WareHouseListHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_InOutReasonHttpPostIn" />
+  <wsdl:message name="IDN_InOutReasonHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_ItemListHttpPostIn" />
+  <wsdl:message name="IDN_ItemListHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_PDA_BIN_ByWhs_CheckHttpPostIn">
+    <wsdl:part name="WhsCode" type="s:string" />
+    <wsdl:part name="BinCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_PDA_BIN_ByWhs_CheckHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_ItemInfo_ByBarCodeHttpPostIn">
+    <wsdl:part name="BarCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_ItemInfo_ByBarCodeHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_GetBinCodefromBarCodeHttpPostIn">
+    <wsdl:part name="BarCode" type="s:string" />
+    <wsdl:part name="WhsCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_GetBinCodefromBarCodeHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_InsertItemHttpPostIn">
+    <wsdl:part name="DocDate" type="s:string" />
+    <wsdl:part name="BarCode" type="s:string" />
+    <wsdl:part name="ItemName" type="s:string" />
+    <wsdl:part name="Quantity" type="s:string" />
+    <wsdl:part name="UoM" type="s:string" />
+    <wsdl:part name="WhsCode" type="s:string" />
+    <wsdl:part name="BINCode" type="s:string" />
+    <wsdl:part name="ReasonCode" type="s:string" />
+    <wsdl:part name="ToWhsCode" type="s:string" />
+    <wsdl:part name="ToBINCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_InsertItemHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_OCRD_LoadHttpPostIn">
+    <wsdl:part name="UserCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_OCRD_LoadHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_OCRD_LoadbyCardcodeHttpPostIn">
+    <wsdl:part name="CardCode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_OCRD_LoadbyCardcodeHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:portType name="IDNWebSerivesSoap">
+    <wsdl:operation name="IDN_DMS_EmpCurrLocation">
+      <wsdl:input message="tns:IDN_DMS_EmpCurrLocationSoapIn" />
+      <wsdl:output message="tns:IDN_DMS_EmpCurrLocationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_EmpGroup_Load">
+      <wsdl:input message="tns:IDN_DMS_EmpGroup_LoadSoapIn" />
+      <wsdl:output message="tns:IDN_DMS_EmpGroup_LoadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Province_Load">
+      <wsdl:input message="tns:IDN_DMS_Province_LoadSoapIn" />
+      <wsdl:output message="tns:IDN_DMS_Province_LoadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Branch_Load">
+      <wsdl:input message="tns:IDN_DMS_Branch_LoadSoapIn" />
+      <wsdl:output message="tns:IDN_DMS_Branch_LoadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Position_Load">
+      <wsdl:input message="tns:IDN_DMS_Position_LoadSoapIn" />
+      <wsdl:output message="tns:IDN_DMS_Position_LoadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_OCRD_Search">
+      <wsdl:input message="tns:IDN_DMS_OCRD_SearchSoapIn" />
+      <wsdl:output message="tns:IDN_DMS_OCRD_SearchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ItemListSales_Search">
+      <wsdl:input message="tns:IDN_ItemListSales_SearchSoapIn" />
+      <wsdl:output message="tns:IDN_ItemListSales_SearchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ROUTE_Load">
+      <wsdl:input message="tns:IDN_ROUTE_LoadSoapIn" />
+      <wsdl:output message="tns:IDN_ROUTE_LoadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_OSLP_Load">
+      <wsdl:input message="tns:IDN_OSLP_LoadSoapIn" />
+      <wsdl:output message="tns:IDN_OSLP_LoadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_CUST_GRP_Load">
+      <wsdl:input message="tns:IDN_CUST_GRP_LoadSoapIn" />
+      <wsdl:output message="tns:IDN_CUST_GRP_LoadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_CHANNEL_Load">
+      <wsdl:input message="tns:IDN_CHANNEL_LoadSoapIn" />
+      <wsdl:output message="tns:IDN_CHANNEL_LoadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_SmartPhone_Login">
+      <wsdl:input message="tns:IDN_SmartPhone_LoginSoapIn" />
+      <wsdl:output message="tns:IDN_SmartPhone_LoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_EmpCurrLocation_Load">
+      <wsdl:input message="tns:IDN_DMS_EmpCurrLocation_LoadSoapIn" />
+      <wsdl:output message="tns:IDN_DMS_EmpCurrLocation_LoadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Employee_Monitor_Load">
+      <wsdl:input message="tns:IDN_DMS_Employee_Monitor_LoadSoapIn" />
+      <wsdl:output message="tns:IDN_DMS_Employee_Monitor_LoadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_CustVisited_Emp_Load">
+      <wsdl:input message="tns:IDN_DMS_CustVisited_Emp_LoadSoapIn" />
+      <wsdl:output message="tns:IDN_DMS_CustVisited_Emp_LoadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_WareHouseList">
+      <wsdl:input message="tns:IDN_WareHouseListSoapIn" />
+      <wsdl:output message="tns:IDN_WareHouseListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_InOutReason">
+      <wsdl:input message="tns:IDN_InOutReasonSoapIn" />
+      <wsdl:output message="tns:IDN_InOutReasonSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ItemList">
+      <wsdl:input message="tns:IDN_ItemListSoapIn" />
+      <wsdl:output message="tns:IDN_ItemListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_PDA_BIN_ByWhs_Check">
+      <wsdl:input message="tns:IDN_PDA_BIN_ByWhs_CheckSoapIn" />
+      <wsdl:output message="tns:IDN_PDA_BIN_ByWhs_CheckSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ItemInfo_ByBarCode">
+      <wsdl:input message="tns:IDN_ItemInfo_ByBarCodeSoapIn" />
+      <wsdl:output message="tns:IDN_ItemInfo_ByBarCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_GetBinCodefromBarCode">
+      <wsdl:input message="tns:IDN_GetBinCodefromBarCodeSoapIn" />
+      <wsdl:output message="tns:IDN_GetBinCodefromBarCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_InsertItem">
+      <wsdl:input message="tns:IDN_InsertItemSoapIn" />
+      <wsdl:output message="tns:IDN_InsertItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_OCRD_Load">
+      <wsdl:input message="tns:IDN_DMS_OCRD_LoadSoapIn" />
+      <wsdl:output message="tns:IDN_DMS_OCRD_LoadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_OCRD_LoadbyCardcode">
+      <wsdl:input message="tns:IDN_DMS_OCRD_LoadbyCardcodeSoapIn" />
+      <wsdl:output message="tns:IDN_DMS_OCRD_LoadbyCardcodeSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IDNWebSerivesHttpGet">
+    <wsdl:operation name="IDN_DMS_EmpCurrLocation">
+      <wsdl:input message="tns:IDN_DMS_EmpCurrLocationHttpGetIn" />
+      <wsdl:output message="tns:IDN_DMS_EmpCurrLocationHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_EmpGroup_Load">
+      <wsdl:input message="tns:IDN_DMS_EmpGroup_LoadHttpGetIn" />
+      <wsdl:output message="tns:IDN_DMS_EmpGroup_LoadHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Province_Load">
+      <wsdl:input message="tns:IDN_DMS_Province_LoadHttpGetIn" />
+      <wsdl:output message="tns:IDN_DMS_Province_LoadHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Branch_Load">
+      <wsdl:input message="tns:IDN_DMS_Branch_LoadHttpGetIn" />
+      <wsdl:output message="tns:IDN_DMS_Branch_LoadHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Position_Load">
+      <wsdl:input message="tns:IDN_DMS_Position_LoadHttpGetIn" />
+      <wsdl:output message="tns:IDN_DMS_Position_LoadHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_OCRD_Search">
+      <wsdl:input message="tns:IDN_DMS_OCRD_SearchHttpGetIn" />
+      <wsdl:output message="tns:IDN_DMS_OCRD_SearchHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ItemListSales_Search">
+      <wsdl:input message="tns:IDN_ItemListSales_SearchHttpGetIn" />
+      <wsdl:output message="tns:IDN_ItemListSales_SearchHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ROUTE_Load">
+      <wsdl:input message="tns:IDN_ROUTE_LoadHttpGetIn" />
+      <wsdl:output message="tns:IDN_ROUTE_LoadHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_OSLP_Load">
+      <wsdl:input message="tns:IDN_OSLP_LoadHttpGetIn" />
+      <wsdl:output message="tns:IDN_OSLP_LoadHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_CUST_GRP_Load">
+      <wsdl:input message="tns:IDN_CUST_GRP_LoadHttpGetIn" />
+      <wsdl:output message="tns:IDN_CUST_GRP_LoadHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_CHANNEL_Load">
+      <wsdl:input message="tns:IDN_CHANNEL_LoadHttpGetIn" />
+      <wsdl:output message="tns:IDN_CHANNEL_LoadHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_SmartPhone_Login">
+      <wsdl:input message="tns:IDN_SmartPhone_LoginHttpGetIn" />
+      <wsdl:output message="tns:IDN_SmartPhone_LoginHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_EmpCurrLocation_Load">
+      <wsdl:input message="tns:IDN_DMS_EmpCurrLocation_LoadHttpGetIn" />
+      <wsdl:output message="tns:IDN_DMS_EmpCurrLocation_LoadHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Employee_Monitor_Load">
+      <wsdl:input message="tns:IDN_DMS_Employee_Monitor_LoadHttpGetIn" />
+      <wsdl:output message="tns:IDN_DMS_Employee_Monitor_LoadHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_CustVisited_Emp_Load">
+      <wsdl:input message="tns:IDN_DMS_CustVisited_Emp_LoadHttpGetIn" />
+      <wsdl:output message="tns:IDN_DMS_CustVisited_Emp_LoadHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_WareHouseList">
+      <wsdl:input message="tns:IDN_WareHouseListHttpGetIn" />
+      <wsdl:output message="tns:IDN_WareHouseListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_InOutReason">
+      <wsdl:input message="tns:IDN_InOutReasonHttpGetIn" />
+      <wsdl:output message="tns:IDN_InOutReasonHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ItemList">
+      <wsdl:input message="tns:IDN_ItemListHttpGetIn" />
+      <wsdl:output message="tns:IDN_ItemListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_PDA_BIN_ByWhs_Check">
+      <wsdl:input message="tns:IDN_PDA_BIN_ByWhs_CheckHttpGetIn" />
+      <wsdl:output message="tns:IDN_PDA_BIN_ByWhs_CheckHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ItemInfo_ByBarCode">
+      <wsdl:input message="tns:IDN_ItemInfo_ByBarCodeHttpGetIn" />
+      <wsdl:output message="tns:IDN_ItemInfo_ByBarCodeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_GetBinCodefromBarCode">
+      <wsdl:input message="tns:IDN_GetBinCodefromBarCodeHttpGetIn" />
+      <wsdl:output message="tns:IDN_GetBinCodefromBarCodeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_InsertItem">
+      <wsdl:input message="tns:IDN_InsertItemHttpGetIn" />
+      <wsdl:output message="tns:IDN_InsertItemHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_OCRD_Load">
+      <wsdl:input message="tns:IDN_DMS_OCRD_LoadHttpGetIn" />
+      <wsdl:output message="tns:IDN_DMS_OCRD_LoadHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_OCRD_LoadbyCardcode">
+      <wsdl:input message="tns:IDN_DMS_OCRD_LoadbyCardcodeHttpGetIn" />
+      <wsdl:output message="tns:IDN_DMS_OCRD_LoadbyCardcodeHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IDNWebSerivesHttpPost">
+    <wsdl:operation name="IDN_DMS_EmpCurrLocation">
+      <wsdl:input message="tns:IDN_DMS_EmpCurrLocationHttpPostIn" />
+      <wsdl:output message="tns:IDN_DMS_EmpCurrLocationHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_EmpGroup_Load">
+      <wsdl:input message="tns:IDN_DMS_EmpGroup_LoadHttpPostIn" />
+      <wsdl:output message="tns:IDN_DMS_EmpGroup_LoadHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Province_Load">
+      <wsdl:input message="tns:IDN_DMS_Province_LoadHttpPostIn" />
+      <wsdl:output message="tns:IDN_DMS_Province_LoadHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Branch_Load">
+      <wsdl:input message="tns:IDN_DMS_Branch_LoadHttpPostIn" />
+      <wsdl:output message="tns:IDN_DMS_Branch_LoadHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Position_Load">
+      <wsdl:input message="tns:IDN_DMS_Position_LoadHttpPostIn" />
+      <wsdl:output message="tns:IDN_DMS_Position_LoadHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_OCRD_Search">
+      <wsdl:input message="tns:IDN_DMS_OCRD_SearchHttpPostIn" />
+      <wsdl:output message="tns:IDN_DMS_OCRD_SearchHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ItemListSales_Search">
+      <wsdl:input message="tns:IDN_ItemListSales_SearchHttpPostIn" />
+      <wsdl:output message="tns:IDN_ItemListSales_SearchHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ROUTE_Load">
+      <wsdl:input message="tns:IDN_ROUTE_LoadHttpPostIn" />
+      <wsdl:output message="tns:IDN_ROUTE_LoadHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_OSLP_Load">
+      <wsdl:input message="tns:IDN_OSLP_LoadHttpPostIn" />
+      <wsdl:output message="tns:IDN_OSLP_LoadHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_CUST_GRP_Load">
+      <wsdl:input message="tns:IDN_CUST_GRP_LoadHttpPostIn" />
+      <wsdl:output message="tns:IDN_CUST_GRP_LoadHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_CHANNEL_Load">
+      <wsdl:input message="tns:IDN_CHANNEL_LoadHttpPostIn" />
+      <wsdl:output message="tns:IDN_CHANNEL_LoadHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_SmartPhone_Login">
+      <wsdl:input message="tns:IDN_SmartPhone_LoginHttpPostIn" />
+      <wsdl:output message="tns:IDN_SmartPhone_LoginHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_EmpCurrLocation_Load">
+      <wsdl:input message="tns:IDN_DMS_EmpCurrLocation_LoadHttpPostIn" />
+      <wsdl:output message="tns:IDN_DMS_EmpCurrLocation_LoadHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Employee_Monitor_Load">
+      <wsdl:input message="tns:IDN_DMS_Employee_Monitor_LoadHttpPostIn" />
+      <wsdl:output message="tns:IDN_DMS_Employee_Monitor_LoadHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_CustVisited_Emp_Load">
+      <wsdl:input message="tns:IDN_DMS_CustVisited_Emp_LoadHttpPostIn" />
+      <wsdl:output message="tns:IDN_DMS_CustVisited_Emp_LoadHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_WareHouseList">
+      <wsdl:input message="tns:IDN_WareHouseListHttpPostIn" />
+      <wsdl:output message="tns:IDN_WareHouseListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_InOutReason">
+      <wsdl:input message="tns:IDN_InOutReasonHttpPostIn" />
+      <wsdl:output message="tns:IDN_InOutReasonHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ItemList">
+      <wsdl:input message="tns:IDN_ItemListHttpPostIn" />
+      <wsdl:output message="tns:IDN_ItemListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_PDA_BIN_ByWhs_Check">
+      <wsdl:input message="tns:IDN_PDA_BIN_ByWhs_CheckHttpPostIn" />
+      <wsdl:output message="tns:IDN_PDA_BIN_ByWhs_CheckHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ItemInfo_ByBarCode">
+      <wsdl:input message="tns:IDN_ItemInfo_ByBarCodeHttpPostIn" />
+      <wsdl:output message="tns:IDN_ItemInfo_ByBarCodeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_GetBinCodefromBarCode">
+      <wsdl:input message="tns:IDN_GetBinCodefromBarCodeHttpPostIn" />
+      <wsdl:output message="tns:IDN_GetBinCodefromBarCodeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_InsertItem">
+      <wsdl:input message="tns:IDN_InsertItemHttpPostIn" />
+      <wsdl:output message="tns:IDN_InsertItemHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_OCRD_Load">
+      <wsdl:input message="tns:IDN_DMS_OCRD_LoadHttpPostIn" />
+      <wsdl:output message="tns:IDN_DMS_OCRD_LoadHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_OCRD_LoadbyCardcode">
+      <wsdl:input message="tns:IDN_DMS_OCRD_LoadbyCardcodeHttpPostIn" />
+      <wsdl:output message="tns:IDN_DMS_OCRD_LoadbyCardcodeHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="IDNWebSerivesSoap" type="tns:IDNWebSerivesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IDN_DMS_EmpCurrLocation">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_EmpCurrLocation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_EmpGroup_Load">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_EmpGroup_Load" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Province_Load">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_Province_Load" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Branch_Load">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_Branch_Load" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Position_Load">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_Position_Load" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_OCRD_Search">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_OCRD_Search" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ItemListSales_Search">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_ItemListSales_Search" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ROUTE_Load">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_ROUTE_Load" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_OSLP_Load">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_OSLP_Load" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_CUST_GRP_Load">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_CUST_GRP_Load" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_CHANNEL_Load">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_CHANNEL_Load" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_SmartPhone_Login">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_SmartPhone_Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_EmpCurrLocation_Load">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_EmpCurrLocation_Load" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Employee_Monitor_Load">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_Employee_Monitor_Load" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_CustVisited_Emp_Load">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_CustVisited_Emp_Load" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_WareHouseList">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_WareHouseList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_InOutReason">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_InOutReason" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ItemList">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_ItemList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_PDA_BIN_ByWhs_Check">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_PDA_BIN_ByWhs_Check" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ItemInfo_ByBarCode">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_ItemInfo_ByBarCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_GetBinCodefromBarCode">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_GetBinCodefromBarCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_InsertItem">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_InsertItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_OCRD_Load">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_OCRD_Load" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_OCRD_LoadbyCardcode">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_OCRD_LoadbyCardcode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="IDNWebSerivesSoap12" type="tns:IDNWebSerivesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IDN_DMS_EmpCurrLocation">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_EmpCurrLocation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_EmpGroup_Load">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_EmpGroup_Load" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Province_Load">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_Province_Load" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Branch_Load">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_Branch_Load" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Position_Load">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_Position_Load" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_OCRD_Search">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_OCRD_Search" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ItemListSales_Search">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_ItemListSales_Search" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ROUTE_Load">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_ROUTE_Load" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_OSLP_Load">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_OSLP_Load" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_CUST_GRP_Load">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_CUST_GRP_Load" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_CHANNEL_Load">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_CHANNEL_Load" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_SmartPhone_Login">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_SmartPhone_Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_EmpCurrLocation_Load">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_EmpCurrLocation_Load" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Employee_Monitor_Load">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_Employee_Monitor_Load" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_CustVisited_Emp_Load">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_CustVisited_Emp_Load" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_WareHouseList">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_WareHouseList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_InOutReason">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_InOutReason" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ItemList">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_ItemList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_PDA_BIN_ByWhs_Check">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_PDA_BIN_ByWhs_Check" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ItemInfo_ByBarCode">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_ItemInfo_ByBarCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_GetBinCodefromBarCode">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_GetBinCodefromBarCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_InsertItem">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_InsertItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_OCRD_Load">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_OCRD_Load" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_OCRD_LoadbyCardcode">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_OCRD_LoadbyCardcode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="IDNWebSerivesHttpGet" type="tns:IDNWebSerivesHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="IDN_DMS_EmpCurrLocation">
+      <http:operation location="/IDN_DMS_EmpCurrLocation" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_EmpGroup_Load">
+      <http:operation location="/IDN_DMS_EmpGroup_Load" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Province_Load">
+      <http:operation location="/IDN_DMS_Province_Load" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Branch_Load">
+      <http:operation location="/IDN_DMS_Branch_Load" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Position_Load">
+      <http:operation location="/IDN_DMS_Position_Load" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_OCRD_Search">
+      <http:operation location="/IDN_DMS_OCRD_Search" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ItemListSales_Search">
+      <http:operation location="/IDN_ItemListSales_Search" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ROUTE_Load">
+      <http:operation location="/IDN_ROUTE_Load" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_OSLP_Load">
+      <http:operation location="/IDN_OSLP_Load" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_CUST_GRP_Load">
+      <http:operation location="/IDN_CUST_GRP_Load" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_CHANNEL_Load">
+      <http:operation location="/IDN_CHANNEL_Load" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_SmartPhone_Login">
+      <http:operation location="/IDN_SmartPhone_Login" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_EmpCurrLocation_Load">
+      <http:operation location="/IDN_DMS_EmpCurrLocation_Load" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Employee_Monitor_Load">
+      <http:operation location="/IDN_DMS_Employee_Monitor_Load" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_CustVisited_Emp_Load">
+      <http:operation location="/IDN_DMS_CustVisited_Emp_Load" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_WareHouseList">
+      <http:operation location="/IDN_WareHouseList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_InOutReason">
+      <http:operation location="/IDN_InOutReason" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ItemList">
+      <http:operation location="/IDN_ItemList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_PDA_BIN_ByWhs_Check">
+      <http:operation location="/IDN_PDA_BIN_ByWhs_Check" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ItemInfo_ByBarCode">
+      <http:operation location="/IDN_ItemInfo_ByBarCode" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_GetBinCodefromBarCode">
+      <http:operation location="/IDN_GetBinCodefromBarCode" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_InsertItem">
+      <http:operation location="/IDN_InsertItem" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_OCRD_Load">
+      <http:operation location="/IDN_DMS_OCRD_Load" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_OCRD_LoadbyCardcode">
+      <http:operation location="/IDN_DMS_OCRD_LoadbyCardcode" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="IDNWebSerivesHttpPost" type="tns:IDNWebSerivesHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="IDN_DMS_EmpCurrLocation">
+      <http:operation location="/IDN_DMS_EmpCurrLocation" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_EmpGroup_Load">
+      <http:operation location="/IDN_DMS_EmpGroup_Load" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Province_Load">
+      <http:operation location="/IDN_DMS_Province_Load" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Branch_Load">
+      <http:operation location="/IDN_DMS_Branch_Load" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Position_Load">
+      <http:operation location="/IDN_DMS_Position_Load" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_OCRD_Search">
+      <http:operation location="/IDN_DMS_OCRD_Search" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ItemListSales_Search">
+      <http:operation location="/IDN_ItemListSales_Search" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ROUTE_Load">
+      <http:operation location="/IDN_ROUTE_Load" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_OSLP_Load">
+      <http:operation location="/IDN_OSLP_Load" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_CUST_GRP_Load">
+      <http:operation location="/IDN_CUST_GRP_Load" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_CHANNEL_Load">
+      <http:operation location="/IDN_CHANNEL_Load" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_SmartPhone_Login">
+      <http:operation location="/IDN_SmartPhone_Login" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_EmpCurrLocation_Load">
+      <http:operation location="/IDN_DMS_EmpCurrLocation_Load" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_Employee_Monitor_Load">
+      <http:operation location="/IDN_DMS_Employee_Monitor_Load" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_CustVisited_Emp_Load">
+      <http:operation location="/IDN_DMS_CustVisited_Emp_Load" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_WareHouseList">
+      <http:operation location="/IDN_WareHouseList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_InOutReason">
+      <http:operation location="/IDN_InOutReason" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ItemList">
+      <http:operation location="/IDN_ItemList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_PDA_BIN_ByWhs_Check">
+      <http:operation location="/IDN_PDA_BIN_ByWhs_Check" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_ItemInfo_ByBarCode">
+      <http:operation location="/IDN_ItemInfo_ByBarCode" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_GetBinCodefromBarCode">
+      <http:operation location="/IDN_GetBinCodefromBarCode" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_InsertItem">
+      <http:operation location="/IDN_InsertItem" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_OCRD_Load">
+      <http:operation location="/IDN_DMS_OCRD_Load" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_OCRD_LoadbyCardcode">
+      <http:operation location="/IDN_DMS_OCRD_LoadbyCardcode" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IDNWebSerives">
+    <wsdl:port name="IDNWebSerivesSoap" binding="tns:IDNWebSerivesSoap">
+      <soap:address location="http://idn.com.vn/BSGKG_WebSrv/IDNWebSerives.asmx" />
+    </wsdl:port>
+    <wsdl:port name="IDNWebSerivesSoap12" binding="tns:IDNWebSerivesSoap12">
+      <soap12:address location="http://idn.com.vn/BSGKG_WebSrv/IDNWebSerives.asmx" />
+    </wsdl:port>
+    <wsdl:port name="IDNWebSerivesHttpGet" binding="tns:IDNWebSerivesHttpGet">
+      <http:address location="http://idn.com.vn/BSGKG_WebSrv/IDNWebSerives.asmx" />
+    </wsdl:port>
+    <wsdl:port name="IDNWebSerivesHttpPost" binding="tns:IDNWebSerivesHttpPost">
+      <http:address location="http://idn.com.vn/BSGKG_WebSrv/IDNWebSerives.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

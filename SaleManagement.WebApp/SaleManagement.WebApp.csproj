@@ -161,8 +161,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\LogOnModel.cs" />
+    <Compile Include="Models\Response\BaseReponse.cs" />
     <Compile Include="Models\Response\BranchResponse.cs" />
+    <Compile Include="Models\Response\EmpCurrentLocationResponse.cs" />
+    <Compile Include="Models\Response\EmpCustVisitedResponse.cs" />
+    <Compile Include="Models\Response\GroupResponse.cs" />
     <Compile Include="Models\Response\LogOnResponse.cs" />
+    <Compile Include="Models\Response\PositionResponse.cs" />
+    <Compile Include="Models\Response\ProvinceResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -2388,6 +2394,7 @@
     <Content Include="Content\Images\avatar.png" />
     <Content Include="Content\Images\cross_circle.png" />
     <Content Include="Content\Images\noaccess.png" />
+    <Content Include="Content\Images\wclose.png" />
     <Content Include="Content\style.css" />
     <Content Include="Content\style.min.css">
       <DependentUpon>style.css</DependentUpon>
@@ -3084,13 +3091,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('D:\Projects\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', 'D:\Projects\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
-    <Error Condition="!Exists('D:\Projects\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'D:\Projects\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

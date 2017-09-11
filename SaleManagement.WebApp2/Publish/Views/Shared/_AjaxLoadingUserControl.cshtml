@@ -1,0 +1,10 @@
+﻿<div id="ajax-loading" style="background-color: #c1c1c1; background-color: rgba(193,193,193,0.7); height: 100%; left: 0; position: fixed; top: 0; width: 100%; z-index: 1000000;">
+    <div style="height: 22px; margin: 200px auto; width: 126px;">
+        <img src="@Url.Content("~/Content/Images/ajax-loader.gif")" />
+    </div>
+</div>
+<script> $(document).ready(function() { $('#ajax-loading').remove(); }); </script>
+<div id="panel-loading" style="display: none;">
+    <img src="@Url.Content("~/Content/Images/ajax-loader.gif")" /><br />
+    Đang tải dữ liệu
+</div>

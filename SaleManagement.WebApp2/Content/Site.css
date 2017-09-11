@@ -1,0 +1,13 @@
+﻿body { font-size: .85em; font-family: "sans-serif",Verdana,Helvetica,Sans-Serif; color: #232323; background-color: #fff; }
+header, footer, nav, section { display: block; }
+/* Styles for basic forms-----------------------------------------------------------*/
+textarea { min-height: 75px; }
+.editor-label { margin: 1em 0 0 0; }
+.editor-field { margin: 0.5em 0 0 0; }
+/* Styles for validation helpers-----------------------------------------------------------*/
+.field-validation-error { color: #ff0000; }
+.field-validation-valid { display: none; }
+.input-validation-error { border: 1px solid #ff0000 !important; background-color: #ffeeee; }
+.validation-summary-errors { font-weight: bold; color: #ff0000; }
+.validation-summary-valid { display: none; }
+.validation-summary-errors ul { padding: 10px 0; background-color: #FFCECE; border: #DF8F8F 1px solid; color: #665252; margin-bottom: 10px; padding: 10px; list-style: none; }

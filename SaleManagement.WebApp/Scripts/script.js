@@ -30,3 +30,26 @@ function getRandomColor() {
     }
     return colour;
 }
+function formatDateTime(e) {
+    if (e) {
+        var date = new Date(parseInt(e.substr(6)));
+        return paddingDisplay2Number(date.getDate()) +
+            '-' +
+            paddingDisplay2Number(date.getMonth() + 1) +
+            ' ' +
+            paddingDisplay2Number(date.getHours()) +
+            ':' +
+            paddingDisplay2Number(date.getMinutes());
+    }
+    return '';
+}
+function runningFormatter(value, row, index) {
+    index++;
+    return index;
+}
+function formatValueNull(obj) {
+    if (obj == null) {
+        return '';
+    }
+    return obj;
+}
