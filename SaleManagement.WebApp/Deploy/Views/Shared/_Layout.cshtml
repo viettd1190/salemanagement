@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@AppUtil.WebTitle | @ViewBag.Title</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="@Url.Content("~/bower_components/bootstrap/dist/css/bootstrap.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/bower_components/font-awesome/css/font-awesome.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/bower_components/Ionicons/css/ionicons.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/dist/css/AdminLTE.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/dist/css/skins/_all-skins.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/style.min.css")">
+    @RenderSection("css", false)
+</head>
+<body class="hold-transition skin-blue layout-top-nav">
+    <div class="wrapper">
+        @Html.Partial("_TopMenuViewUserControl")
+        <div class="content-wrapper">
+            <div class="container">
+                <section class="content-header">
+                    @RenderSection("header", false)
+                    @RenderSection("navigation", false)
+                </section>
+                <section class="content">
+                    @RenderBody()
+                </section>
+            </div>
+        </div>
+        @Html.Partial("_FooterViewUserControl")
+    </div>
+    <script src="@Url.Content("~/bower_components/jquery/dist/jquery.min.js")"></script>
+    <script src="@Url.Content("~/bower_components/bootstrap/dist/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/bower_components/jquery-slimscroll/jquery.slimscroll.min.js")"></script>
+    <script src="@Url.Content("~/bower_components/fastclick/lib/fastclick.js")"></script>
+    <script src="@Url.Content("~/dist/js/adminlte.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/script.min.js")"></script>
+    @RenderSection("scripts", false)
+</body>
+</html>

@@ -1,0 +1,67 @@
+﻿@model SaleManagement.WebApp.Models.LogOnModel
+@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/_Empty.cshtml";
+}
+
+@section css{
+    <link rel="stylesheet" href="@Url.Content("~/plugins/iCheck/square/blue.css")">
+}
+
+<div class="login-box">
+    <div class="login-logo">
+        <a href="#"><b>Admin</b>LTE</a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <p class="login-box-msg">Đăng nhập để bắt đầu phiên làm việc</p>
+        <form enctype="multipart/form-data" method="POST" autocomplete="off">
+            @Html.ValidationSummary()
+            <div class="form-group has-feedback">
+                @Html.TextBoxFor(c => c.Username,
+                                 new {
+                                             @class = "form-control",
+                                             placeholder = "Tên đăng nhập"
+                                     })
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                @Html.PasswordFor(c => c.Password,
+                                  new {
+                                              @class = "form-control",
+                                              placeholder = "Mật khẩu"
+                                      })
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="checkbox icheck">
+                        <label>
+                            @Html.CheckBoxFor(c => c.RememberMe) Ghi nhớ tài khoản
+                        </label>
+                    </div>
+                </div>
+                <!-- /.col -->
+                <div class="col-xs-4">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat" style="padding-left:8px;">Đăng nhập</button>
+                </div>
+                <!-- /.col -->
+            </div>
+        </form>
+    </div>
+    <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
+
+@section scripts{
+    <script src="@Url.Content("~/plugins/iCheck/icheck.min.js")"></script>
+    <script>
+        $(document).ready(function() {
+            $('input').iCheck({
+                    checkboxClass:'icheckbox_square-blue',
+                    radioClass:'iradio_square-blue',
+                    increaseArea:'20%' // optional
+                });
+        });
+    </script>
+}
