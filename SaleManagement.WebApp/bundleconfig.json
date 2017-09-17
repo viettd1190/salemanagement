@@ -28,5 +28,11 @@
     "inputFiles": [
       "dist/js/app.js"
     ]
+  },
+  {
+    "outputFileName": "Content/map.min.css",
+    "inputFiles": [
+      "Content/map.css"
+    ]
   }
 ]

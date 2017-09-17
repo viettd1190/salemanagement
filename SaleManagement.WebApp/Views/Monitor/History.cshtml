@@ -1,8 +1,299 @@
-﻿@model dynamic
-
-@{
-    ViewBag.Title = "title";
-    Layout = "_Layout";
+﻿@{
+    ViewBag.Title = "Xem lại lộ trình";
+    Layout = "~/Views/Shared/_Map.cshtml";
 }
-
-<h2>title</h2>
+@section css{
+    <style>
+        .olPopupCloseBox {display: none;}
+        #popup_FrameDecorationDiv_1{display:none;}
+        #popup_FrameDecorationDiv_2{display:none;}
+        #popup_FrameDecorationDiv_3{display:none;}
+    </style>
+}
+@section scripts{
+    <script>
+        var timer = 0;
+        var TIMER_INTERVAL = 10;
+        var urlEmpName = '@Url.Action("GetEmployeeName", "Monitor")?name=';
+        var vector, firstZoom = true;
+        var searchGroup = '';
+        var searchBranch = '';
+        var searchPosition = '';
+        var searchProvince='';
+        $(document).ready(function () {
+            initCompactMap('map', initialization);
+            //showTimerStatus();
+            $('#table').bootstrapTable({
+                    onClickRow: function (data,e) {
+                        if (data) {
+                            var feature = window.vector.getFeatureById('Point_' + data.MyId);
+                            if (feature) {
+                                showPointInfo(feature, data.EmpId);
+                            }
+                        }
+                        $('tr').removeClass('row-active');
+                        e.addClass('row-active');
+                    }
+                });
+            //loadGroups();
+            //loadBranches();
+            //loadProvinces();
+            //loadPositions();
+            //$('#txtSearchBox').keydown(function (key) {
+            //    if (key) {
+            //        if (key.keyCode == 13) {
+            //            refreshEmployees();
+            //        }
+            //    }
+            //});
+        });
+        function showTimerStatus() {
+            var obj = $('.timer-status');
+            if (obj.length == 0) {
+                $('#map').append('<div class="timer-status"></div>');
+            }
+        }
+        function setTimerStatus() { $('.timer-status').html('Cập nhật trong ' + window.timer-- + ' giây'); }
+        function refresh() {
+            setTimerStatus();
+            setTimeout(refresh, 1000);
+            if (timer < 0) {
+                timer = TIMER_INTERVAL;
+                refreshEmployees();
+            }
+        }
+        function showPointInfo(feature, empId) {
+            removeCurrentPopup();
+            var point = getLonLatTransform(feature.data.CurrLong * 1e6, feature.data.CurrLat * 1e6);
+            $.post('@Url.Action("GetEmployeeInformation")',
+                {id:empId},
+                function(data) {
+                    if (data) {
+                        var popup=new OpenLayers.Popup.FramedCloud("popup",
+                            point,
+                            new OpenLayers.Size(500,180),
+                            getEmployeeInfo(data),
+                            null,
+                            true);
+                        popup.autoSize = false;
+                        window.curPopU = popup;
+                        map.addPopup(popup);
+                        setCenter(feature.geometry);
+                    }
+                });
+            
+        }
+        function getEmployeeInfo(employee) {
+            return '<a class="close" href="javascript:removeCurrentPopup();"></a><table class="waypoint-info">' +
+                '<tr class="plates"><td colspan="4">Nhân viên: ' + formatValueNull(employee.EmpFullName) + '</td></tr>' +
+                '<tr><td colspan="4"><b>Vị trí:</b> ' + formatValueNull(employee.Address) + '</td></tr>' +
+                '<tr class="title"><td colspan="2">Thông tin nhân viên</td><td colspan="2" class="passenger">Thông tin công việc</td></tr>' +
+                '<tr><td>Mã nhân viên:</td><td>' + formatValueNull(employee.EmpId) + '</td><td>Đơn hàng đặt:</td><td>' + formatValueNull(employee.NoCustOrderPlan) + '(KH) - ' + formatValueNull(employee.NoCustOrderActual) + '(TH)</td></tr>' +
+                '<tr><td>Tên nhân viên:</td><td>' + formatValueNull(employee.EmpFullName) + '</td><td>Đơn hàng giao:</td><td>' + formatValueNull(employee.NoCustDelPlan) + '(KH) - ' + formatValueNull(employee.NoCustDelActual) + '(TH)</td></tr>' +
+                '<tr><td>Lng:</td><td>' + formatValueNull(employee.LongitudeValue) + '</td><td>TG BĐ viếng thăm:</td><td>' + formatDateTime(employee.VisitStartDate) + '</td></tr>' +
+                '<tr><td>Lat:</td><td>' + formatValueNull(employee.LatitudeValue) + '</td><td>TG KT viếng thăm:</td><td>' + formatDateTime(employee.VisitEndDate) + '</td></tr>' +
+                '<tr><td colspan="2"></td><td>Tổng TG viếng thăm:</td><td>' + formatValueNull(employee.VisitTotal) + '</td></tr>' +
+                '</table>';
+        }
+        function initialization() {
+            window.setupVmMap();
+            vector = new OpenLayers.Layer.Vector('Points');
+            map.addLayers([vector]);
+            window.selectControl = new OpenLayers.Control.SelectFeature(window.vector);
+            window.map.addControl(window.selectControl);
+            window.selectControl.activate();
+            window.vector.events.on({ "featureselected": function (e) { showPointInfo(e.feature); } });
+            var point = new OpenLayers.LonLat(107.178314208984, 16.6212692260742);
+            point.transform(window.baseProjection, window.googleProjection);
+            window.map.setCenter(point, 5);
+            //setTimeout(function () {
+            //    window.map.updateSize();
+            //    refreshEmployees();
+            //}, 10);
+            window.map.updateSize();
+            refresh();
+        }
+        function remove() {
+            removeCurrentPopup();
+            vector.removeAllFeatures();
+        }
+        function refreshEmployees() {
+            var search = $('#txtSearchBox').val();
+            $.post('@Url.Action("RefreshEmployees")',
+                {branch:searchBranch,province:searchProvince,position:searchPosition,empGrp:searchGroup,search:search},
+                function(data) {
+                    $('#table').bootstrapTable('load', data);
+                    for(var i=0;i<data.length;i++) {
+                        createPOI(convertLonLattoPoint(getLonLatTransform(data[i].CurrLong * 1e6, data[i].CurrLat * 1e6)), data[i]);
+                    }
+                    if (firstZoom) {
+                        map.zoomToExtent(window.vector.getDataExtent(), false);
+                        firstZoom = false;
+                    }
+                });
+        }
+        function createPOI(point,item) {
+            var feature=new OpenLayers.Feature.Vector(point,
+                {},
+                {
+                    externalGraphic:item.PicLink,
+                    graphicWidth:20,
+                    graphicHeight:20,
+                    graphicOpacity:1,
+                    pointRadius:10,
+                    graphicYOffset:-30,
+                    backgroundGraphic: window.urlEmpName + item.EmpFullName,
+                    backgroundHeight:18,
+                    backgroundWidth: item.EmpFullName.length * 8 + 4
+                });
+            feature.data=item;
+            feature.id='Point_'+item.MyId;
+            window.vector.addFeatures(feature);
+        }
+        function loadGroups() {
+            $.post('@Url.Action("GetEmpGroups")',
+                '',
+                function (data) {
+                    if (data) {
+                        for (var i = 0; i < data.length; i++) {
+                            $('#ulGroup').append('<li id="liGroup_'+data[i].GrpCode+'"><a href="javascript:selectGroup(\''+data[i].GrpCode+'\')">'+data[i].PosName+'</a></li>');
+                        }
+                    }
+                });
+        }
+        function selectGroup(code) {
+            $('#ulGroup .li-active').removeClass('li-active');
+            if (code) {
+                $('#liGroup_' + code).addClass('li-active');
+                searchGroup=code;
+            }
+            else {
+                $('#liGroup').addClass('li-active');
+                searchGroup='';
+            }
+            refreshEmployees();
+        }
+        function loadBranches() {
+            $.post('@Url.Action("GetBranches")',
+                '',
+                function (data) {
+                    if (data) {
+                        for (var i = 0; i < data.length; i++) {
+                            $('#ulBranch').append('<li id="liBranch_' + data[i].ProCode + '"><a href="javascript:selectBranch(\'' + data[i].ProCode + '\')">' + data[i].ProName + '</a></li>');
+                        }
+                    }
+                });
+        }
+        function selectBranch(code) {
+            $('#ulBranch .li-active').removeClass('li-active');
+            if (code) {
+                $('#liBranch_' + code).addClass('li-active');
+                searchBranch=code;
+            }
+            else {
+                $('#liBranch').addClass('li-active');
+                searchBranch='';
+            }
+            refreshEmployees();
+        }
+        function loadProvinces() {
+            $.post('@Url.Action("GetProvinces")',
+                '',
+                function (data) {
+                    if (data) {
+                        for (var i = 0; i < data.length; i++) {
+                            $('#ulProvince').append('<li id="liProvince_' + data[i].ProCode + '"><a href="javascript:selectProvince(\'' + data[i].ProCode + '\')">' + data[i].ProName + '</a></li>');
+                        }
+                    }
+                });
+        }
+        function selectProvince(code) {
+            $('#ulProvince .li-active').removeClass('li-active');
+            if (code) {
+                $('#liProvince_' + code).addClass('li-active');
+                searchProvince=code;
+            }
+            else {
+                $('#liProvince').addClass('li-active');
+                searchProvince='';
+            }
+            refreshEmployees();
+        }
+        function loadPositions() {
+            $.post('@Url.Action("GetPositions")',
+                '',
+                function (data) {
+                    if (data) {
+                        for (var i = 0; i < data.length; i++) {
+                            $('#ulPosition').append('<li id="liPosition_' + data[i].ProCode + '"><a href="javascript:selectPosition(\'' + data[i].ProCode + '\')">' + data[i].ProName + '</a></li>');
+                        }
+                    }
+                });
+        }
+        function selectPosition(code) {
+            $('#ulPosition .li-active').removeClass('li-active');
+            if (code) {
+                $('#liPosition_' + code).addClass('li-active');
+                searchPosition=code;
+            }
+            else {
+                $('#liPosition').addClass('li-active');
+                searchPosition='';
+            }
+            refreshEmployees();
+        }
+    </script>}
+@section search {
+    <div id="divSearch" style="height:40px;background-color:#eee;display:flex;">
+        <input id="txtSearchBox" class="form-control" placeholder="Tìm kiếm nhân viên" style="width:200px;"/>
+        <div class="btn-group">
+            <button type="button" class="btn btn-flat btn-default dropdown-toggle" data-toggle="dropdown">
+                Chi nhánh <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu btn-dropdown-menu" role="menu" id="ulBranch">
+                <li id="liBranch" class="li-active"><a href="javascript:selectBranch()">Tất cả chi nhánh</a></li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-flat btn-default dropdown-toggle" data-toggle="dropdown">
+                Tỉnh/Thành phố <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu btn-dropdown-menu" role="menu" id="ulProvince">
+                <li id="liProvince" class="li-active"><a href="javascript:selectProvince()">Tất cả tỉnh/thành phố</a></li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-flat btn-default dropdown-toggle" data-toggle="dropdown">
+                Chức vụ <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu btn-dropdown-menu" role="menu" id="ulPosition">
+                <li id="liPosition" class="li-active"><a href="javascript:selectPosition()">Tất cả chức vụ</a></li>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-flat btn-default dropdown-toggle" data-toggle="dropdown">
+                Nhóm <span class="caret"></span></button>
+            <ul class="dropdown-menu btn-dropdown-menu" role="menu" id="ulGroup">
+                <li id="liGroup" class="li-active"><a href="javascript:selectGroup()">Tất cả nhóm</a></li>
+            </ul>
+        </div>
+    </div>
+}
+<div class="sidebar-left-2">
+    <table id="table"
+           data-mobile-responsive="true"
+           data-page-number="1"
+           data-page-size="20"
+           data-pagination="true"
+           data-page-list="[10, 20, 50, 100]"
+           data-striped="true"
+           data-classes="table table-hover">
+        <thead>
+        <tr class="active">
+            <th data-valign="middle" data-width="45" data-field="Id" data-align="center" data-formatter="runningFormatter">STT</th>
+            <th data-valign="middle" data-field="Address" data-sortable="true" data-formatter="formatValueNull">Nhật ký hoạt động</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<div id="map" class="sidebar-right-2"></div>

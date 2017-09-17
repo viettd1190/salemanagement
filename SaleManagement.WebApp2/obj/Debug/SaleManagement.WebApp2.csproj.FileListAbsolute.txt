@@ -52,3 +52,4 @@ D:\Projects\Freelancer\salemanagement\SaleManagement.WebApp2\obj\Debug\SaleManag
 D:\Projects\Freelancer\salemanagement\SaleManagement.WebApp2\bin\NLog.config
 D:\Projects\Freelancer\salemanagement\SaleManagement.WebApp2\bin\NLog.dll
 D:\Projects\Freelancer\salemanagement\SaleManagement.WebApp2\bin\NLog.xml
+D:\Projects\Freelancer\salemanagement\SaleManagement.WebApp2\bin\SaleManagement.WebApp2.dll.config

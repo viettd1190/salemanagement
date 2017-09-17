@@ -165,6 +165,7 @@
     <Compile Include="Models\Response\BranchResponse.cs" />
     <Compile Include="Models\Response\EmpCurrentLocationResponse.cs" />
     <Compile Include="Models\Response\EmpCustVisitedResponse.cs" />
+    <Compile Include="Models\Response\EmpHistoryTrackingResponse.cs" />
     <Compile Include="Models\Response\GroupResponse.cs" />
     <Compile Include="Models\Response\LogOnResponse.cs" />
     <Compile Include="Models\Response\PositionResponse.cs" />
@@ -2395,6 +2396,10 @@
     <Content Include="Content\Images\cross_circle.png" />
     <Content Include="Content\Images\noaccess.png" />
     <Content Include="Content\Images\wclose.png" />
+    <Content Include="Content\map.css" />
+    <Content Include="Content\map.min.css">
+      <DependentUpon>map.css</DependentUpon>
+    </Content>
     <Content Include="Content\style.css" />
     <Content Include="Content\style.min.css">
       <DependentUpon>style.css</DependentUpon>
@@ -2464,9 +2469,13 @@
     <Content Include="dist\img\user7-128x128.jpg" />
     <Content Include="dist\img\user8-128x128.jpg" />
     <Content Include="dist\js\adminlte.js" />
-    <Content Include="dist\js\adminlte.min.js" />
+    <Content Include="dist\js\adminlte.min.js">
+      <DependentUpon>adminlte.js</DependentUpon>
+    </Content>
     <Content Include="dist\js\app.js" />
-    <Content Include="dist\js\app.min.js" />
+    <Content Include="dist\js\app.min.js">
+      <DependentUpon>app.js</DependentUpon>
+    </Content>
     <Content Include="dist\js\demo.js" />
     <Content Include="dist\js\pages\dashboard.js" />
     <Content Include="dist\js\pages\dashboard2.js" />
@@ -3029,10 +3038,10 @@
     <Content Include="Views\Shared\Unauthorized.cshtml" />
     <Content Include="Views\Shared\_Map.cshtml" />
     <None Include="Web References\CustomerService\IDNWebSerives.wsdl" />
-    <Content Include="Web References\CustomerService\Reference.map">
+    <None Include="Web References\CustomerService\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

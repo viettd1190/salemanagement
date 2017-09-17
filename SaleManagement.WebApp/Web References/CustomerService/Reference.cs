@@ -30,6 +30,12 @@ namespace SaleManagement.WebApp.CustomerService {
     [System.Web.Services.WebServiceBindingAttribute(Name="IDNWebSerivesSoap", Namespace="http://idn.com.vn/BSGKG_WebSrv/")]
     public partial class IDNWebSerives : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback IDN_EmpHistoryTrackingOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback IDN_EmpHistoryTracking_byEmpOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback IDN_DMS_CustVisited_Emp_ByEmpOperationCompleted;
+        
         private System.Threading.SendOrPostCallback IDN_DMS_EmpCurrLocationOperationCompleted;
         
         private System.Threading.SendOrPostCallback IDN_DMS_EmpGroup_LoadOperationCompleted;
@@ -117,6 +123,15 @@ namespace SaleManagement.WebApp.CustomerService {
         }
         
         /// <remarks/>
+        public event IDN_EmpHistoryTrackingCompletedEventHandler IDN_EmpHistoryTrackingCompleted;
+        
+        /// <remarks/>
+        public event IDN_EmpHistoryTracking_byEmpCompletedEventHandler IDN_EmpHistoryTracking_byEmpCompleted;
+        
+        /// <remarks/>
+        public event IDN_DMS_CustVisited_Emp_ByEmpCompletedEventHandler IDN_DMS_CustVisited_Emp_ByEmpCompleted;
+        
+        /// <remarks/>
         public event IDN_DMS_EmpCurrLocationCompletedEventHandler IDN_DMS_EmpCurrLocationCompleted;
         
         /// <remarks/>
@@ -187,6 +202,109 @@ namespace SaleManagement.WebApp.CustomerService {
         
         /// <remarks/>
         public event IDN_DMS_OCRD_LoadbyCardcodeCompletedEventHandler IDN_DMS_OCRD_LoadbyCardcodeCompleted;
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://idn.com.vn/BSGKG_WebSrv/IDN_EmpHistoryTracking", RequestNamespace="http://idn.com.vn/BSGKG_WebSrv/", ResponseNamespace="http://idn.com.vn/BSGKG_WebSrv/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataTable IDN_EmpHistoryTracking(string UserCode, string Branch, string Province, string Position, string EmpGrp, System.DateTime CurrDate, string FreeText) {
+            object[] results = this.Invoke("IDN_EmpHistoryTracking", new object[] {
+                        UserCode,
+                        Branch,
+                        Province,
+                        Position,
+                        EmpGrp,
+                        CurrDate,
+                        FreeText});
+            return ((System.Data.DataTable)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void IDN_EmpHistoryTrackingAsync(string UserCode, string Branch, string Province, string Position, string EmpGrp, System.DateTime CurrDate, string FreeText) {
+            this.IDN_EmpHistoryTrackingAsync(UserCode, Branch, Province, Position, EmpGrp, CurrDate, FreeText, null);
+        }
+        
+        /// <remarks/>
+        public void IDN_EmpHistoryTrackingAsync(string UserCode, string Branch, string Province, string Position, string EmpGrp, System.DateTime CurrDate, string FreeText, object userState) {
+            if ((this.IDN_EmpHistoryTrackingOperationCompleted == null)) {
+                this.IDN_EmpHistoryTrackingOperationCompleted = new System.Threading.SendOrPostCallback(this.OnIDN_EmpHistoryTrackingOperationCompleted);
+            }
+            this.InvokeAsync("IDN_EmpHistoryTracking", new object[] {
+                        UserCode,
+                        Branch,
+                        Province,
+                        Position,
+                        EmpGrp,
+                        CurrDate,
+                        FreeText}, this.IDN_EmpHistoryTrackingOperationCompleted, userState);
+        }
+        
+        private void OnIDN_EmpHistoryTrackingOperationCompleted(object arg) {
+            if ((this.IDN_EmpHistoryTrackingCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.IDN_EmpHistoryTrackingCompleted(this, new IDN_EmpHistoryTrackingCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://idn.com.vn/BSGKG_WebSrv/IDN_EmpHistoryTracking_byEmp", RequestNamespace="http://idn.com.vn/BSGKG_WebSrv/", ResponseNamespace="http://idn.com.vn/BSGKG_WebSrv/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataTable IDN_EmpHistoryTracking_byEmp(string UserCode, System.DateTime CurrDate) {
+            object[] results = this.Invoke("IDN_EmpHistoryTracking_byEmp", new object[] {
+                        UserCode,
+                        CurrDate});
+            return ((System.Data.DataTable)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void IDN_EmpHistoryTracking_byEmpAsync(string UserCode, System.DateTime CurrDate) {
+            this.IDN_EmpHistoryTracking_byEmpAsync(UserCode, CurrDate, null);
+        }
+        
+        /// <remarks/>
+        public void IDN_EmpHistoryTracking_byEmpAsync(string UserCode, System.DateTime CurrDate, object userState) {
+            if ((this.IDN_EmpHistoryTracking_byEmpOperationCompleted == null)) {
+                this.IDN_EmpHistoryTracking_byEmpOperationCompleted = new System.Threading.SendOrPostCallback(this.OnIDN_EmpHistoryTracking_byEmpOperationCompleted);
+            }
+            this.InvokeAsync("IDN_EmpHistoryTracking_byEmp", new object[] {
+                        UserCode,
+                        CurrDate}, this.IDN_EmpHistoryTracking_byEmpOperationCompleted, userState);
+        }
+        
+        private void OnIDN_EmpHistoryTracking_byEmpOperationCompleted(object arg) {
+            if ((this.IDN_EmpHistoryTracking_byEmpCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.IDN_EmpHistoryTracking_byEmpCompleted(this, new IDN_EmpHistoryTracking_byEmpCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_CustVisited_Emp_ByEmp", RequestNamespace="http://idn.com.vn/BSGKG_WebSrv/", ResponseNamespace="http://idn.com.vn/BSGKG_WebSrv/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataTable IDN_DMS_CustVisited_Emp_ByEmp(string UserCode, System.DateTime CurrDate) {
+            object[] results = this.Invoke("IDN_DMS_CustVisited_Emp_ByEmp", new object[] {
+                        UserCode,
+                        CurrDate});
+            return ((System.Data.DataTable)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void IDN_DMS_CustVisited_Emp_ByEmpAsync(string UserCode, System.DateTime CurrDate) {
+            this.IDN_DMS_CustVisited_Emp_ByEmpAsync(UserCode, CurrDate, null);
+        }
+        
+        /// <remarks/>
+        public void IDN_DMS_CustVisited_Emp_ByEmpAsync(string UserCode, System.DateTime CurrDate, object userState) {
+            if ((this.IDN_DMS_CustVisited_Emp_ByEmpOperationCompleted == null)) {
+                this.IDN_DMS_CustVisited_Emp_ByEmpOperationCompleted = new System.Threading.SendOrPostCallback(this.OnIDN_DMS_CustVisited_Emp_ByEmpOperationCompleted);
+            }
+            this.InvokeAsync("IDN_DMS_CustVisited_Emp_ByEmp", new object[] {
+                        UserCode,
+                        CurrDate}, this.IDN_DMS_CustVisited_Emp_ByEmpOperationCompleted, userState);
+        }
+        
+        private void OnIDN_DMS_CustVisited_Emp_ByEmpOperationCompleted(object arg) {
+            if ((this.IDN_DMS_CustVisited_Emp_ByEmpCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.IDN_DMS_CustVisited_Emp_ByEmpCompleted(this, new IDN_DMS_CustVisited_Emp_ByEmpCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_EmpCurrLocation", RequestNamespace="http://idn.com.vn/BSGKG_WebSrv/", ResponseNamespace="http://idn.com.vn/BSGKG_WebSrv/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -946,6 +1064,84 @@ namespace SaleManagement.WebApp.CustomerService {
                 return true;
             }
             return false;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void IDN_EmpHistoryTrackingCompletedEventHandler(object sender, IDN_EmpHistoryTrackingCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class IDN_EmpHistoryTrackingCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal IDN_EmpHistoryTrackingCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataTable Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataTable)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void IDN_EmpHistoryTracking_byEmpCompletedEventHandler(object sender, IDN_EmpHistoryTracking_byEmpCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class IDN_EmpHistoryTracking_byEmpCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal IDN_EmpHistoryTracking_byEmpCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataTable Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataTable)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void IDN_DMS_CustVisited_Emp_ByEmpCompletedEventHandler(object sender, IDN_DMS_CustVisited_Emp_ByEmpCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class IDN_DMS_CustVisited_Emp_ByEmpCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal IDN_DMS_CustVisited_Emp_ByEmpCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataTable Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataTable)(this.results[0]));
+            }
         }
     }
     

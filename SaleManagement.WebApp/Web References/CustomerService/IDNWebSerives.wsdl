@@ -2,6 +2,77 @@
 <wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://idn.com.vn/BSGKG_WebSrv/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://idn.com.vn/BSGKG_WebSrv/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://idn.com.vn/BSGKG_WebSrv/">
+      <s:element name="IDN_EmpHistoryTracking">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Branch" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Province" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Position" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EmpGrp" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CurrDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="FreeText" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_EmpHistoryTrackingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_EmpHistoryTrackingResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_EmpHistoryTracking_byEmp">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CurrDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_EmpHistoryTracking_byEmpResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_EmpHistoryTracking_byEmpResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_DMS_CustVisited_Emp_ByEmp">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CurrDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IDN_DMS_CustVisited_Emp_ByEmpResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IDN_DMS_CustVisited_Emp_ByEmpResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="IDN_DMS_EmpCurrLocation">
         <s:complexType>
           <s:sequence>
@@ -530,6 +601,24 @@
       </s:element>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="IDN_EmpHistoryTrackingSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_EmpHistoryTracking" />
+  </wsdl:message>
+  <wsdl:message name="IDN_EmpHistoryTrackingSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_EmpHistoryTrackingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_EmpHistoryTracking_byEmpSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_EmpHistoryTracking_byEmp" />
+  </wsdl:message>
+  <wsdl:message name="IDN_EmpHistoryTracking_byEmpSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_EmpHistoryTracking_byEmpResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_CustVisited_Emp_ByEmpSoapIn">
+    <wsdl:part name="parameters" element="tns:IDN_DMS_CustVisited_Emp_ByEmp" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_CustVisited_Emp_ByEmpSoapOut">
+    <wsdl:part name="parameters" element="tns:IDN_DMS_CustVisited_Emp_ByEmpResponse" />
+  </wsdl:message>
   <wsdl:message name="IDN_DMS_EmpCurrLocationSoapIn">
     <wsdl:part name="parameters" element="tns:IDN_DMS_EmpCurrLocation" />
   </wsdl:message>
@@ -673,6 +762,32 @@
   </wsdl:message>
   <wsdl:message name="IDN_DMS_OCRD_LoadbyCardcodeSoapOut">
     <wsdl:part name="parameters" element="tns:IDN_DMS_OCRD_LoadbyCardcodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDN_EmpHistoryTrackingHttpGetIn">
+    <wsdl:part name="UserCode" type="s:string" />
+    <wsdl:part name="Branch" type="s:string" />
+    <wsdl:part name="Province" type="s:string" />
+    <wsdl:part name="Position" type="s:string" />
+    <wsdl:part name="EmpGrp" type="s:string" />
+    <wsdl:part name="CurrDate" type="s:string" />
+    <wsdl:part name="FreeText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_EmpHistoryTrackingHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_EmpHistoryTracking_byEmpHttpGetIn">
+    <wsdl:part name="UserCode" type="s:string" />
+    <wsdl:part name="CurrDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_EmpHistoryTracking_byEmpHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_CustVisited_Emp_ByEmpHttpGetIn">
+    <wsdl:part name="UserCode" type="s:string" />
+    <wsdl:part name="CurrDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_CustVisited_Emp_ByEmpHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
   </wsdl:message>
   <wsdl:message name="IDN_DMS_EmpCurrLocationHttpGetIn">
     <wsdl:part name="UserCode" type="s:string" />
@@ -836,6 +951,32 @@
     <wsdl:part name="CardCode" type="s:string" />
   </wsdl:message>
   <wsdl:message name="IDN_DMS_OCRD_LoadbyCardcodeHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_EmpHistoryTrackingHttpPostIn">
+    <wsdl:part name="UserCode" type="s:string" />
+    <wsdl:part name="Branch" type="s:string" />
+    <wsdl:part name="Province" type="s:string" />
+    <wsdl:part name="Position" type="s:string" />
+    <wsdl:part name="EmpGrp" type="s:string" />
+    <wsdl:part name="CurrDate" type="s:string" />
+    <wsdl:part name="FreeText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_EmpHistoryTrackingHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_EmpHistoryTracking_byEmpHttpPostIn">
+    <wsdl:part name="UserCode" type="s:string" />
+    <wsdl:part name="CurrDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_EmpHistoryTracking_byEmpHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_CustVisited_Emp_ByEmpHttpPostIn">
+    <wsdl:part name="UserCode" type="s:string" />
+    <wsdl:part name="CurrDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IDN_DMS_CustVisited_Emp_ByEmpHttpPostOut">
     <wsdl:part name="Body" element="tns:DataTable" />
   </wsdl:message>
   <wsdl:message name="IDN_DMS_EmpCurrLocationHttpPostIn">
@@ -1003,6 +1144,18 @@
     <wsdl:part name="Body" element="tns:DataTable" />
   </wsdl:message>
   <wsdl:portType name="IDNWebSerivesSoap">
+    <wsdl:operation name="IDN_EmpHistoryTracking">
+      <wsdl:input message="tns:IDN_EmpHistoryTrackingSoapIn" />
+      <wsdl:output message="tns:IDN_EmpHistoryTrackingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_EmpHistoryTracking_byEmp">
+      <wsdl:input message="tns:IDN_EmpHistoryTracking_byEmpSoapIn" />
+      <wsdl:output message="tns:IDN_EmpHistoryTracking_byEmpSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_CustVisited_Emp_ByEmp">
+      <wsdl:input message="tns:IDN_DMS_CustVisited_Emp_ByEmpSoapIn" />
+      <wsdl:output message="tns:IDN_DMS_CustVisited_Emp_ByEmpSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="IDN_DMS_EmpCurrLocation">
       <wsdl:input message="tns:IDN_DMS_EmpCurrLocationSoapIn" />
       <wsdl:output message="tns:IDN_DMS_EmpCurrLocationSoapOut" />
@@ -1101,6 +1254,18 @@
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IDNWebSerivesHttpGet">
+    <wsdl:operation name="IDN_EmpHistoryTracking">
+      <wsdl:input message="tns:IDN_EmpHistoryTrackingHttpGetIn" />
+      <wsdl:output message="tns:IDN_EmpHistoryTrackingHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_EmpHistoryTracking_byEmp">
+      <wsdl:input message="tns:IDN_EmpHistoryTracking_byEmpHttpGetIn" />
+      <wsdl:output message="tns:IDN_EmpHistoryTracking_byEmpHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_CustVisited_Emp_ByEmp">
+      <wsdl:input message="tns:IDN_DMS_CustVisited_Emp_ByEmpHttpGetIn" />
+      <wsdl:output message="tns:IDN_DMS_CustVisited_Emp_ByEmpHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="IDN_DMS_EmpCurrLocation">
       <wsdl:input message="tns:IDN_DMS_EmpCurrLocationHttpGetIn" />
       <wsdl:output message="tns:IDN_DMS_EmpCurrLocationHttpGetOut" />
@@ -1199,6 +1364,18 @@
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IDNWebSerivesHttpPost">
+    <wsdl:operation name="IDN_EmpHistoryTracking">
+      <wsdl:input message="tns:IDN_EmpHistoryTrackingHttpPostIn" />
+      <wsdl:output message="tns:IDN_EmpHistoryTrackingHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_EmpHistoryTracking_byEmp">
+      <wsdl:input message="tns:IDN_EmpHistoryTracking_byEmpHttpPostIn" />
+      <wsdl:output message="tns:IDN_EmpHistoryTracking_byEmpHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_CustVisited_Emp_ByEmp">
+      <wsdl:input message="tns:IDN_DMS_CustVisited_Emp_ByEmpHttpPostIn" />
+      <wsdl:output message="tns:IDN_DMS_CustVisited_Emp_ByEmpHttpPostOut" />
+    </wsdl:operation>
     <wsdl:operation name="IDN_DMS_EmpCurrLocation">
       <wsdl:input message="tns:IDN_DMS_EmpCurrLocationHttpPostIn" />
       <wsdl:output message="tns:IDN_DMS_EmpCurrLocationHttpPostOut" />
@@ -1298,6 +1475,33 @@
   </wsdl:portType>
   <wsdl:binding name="IDNWebSerivesSoap" type="tns:IDNWebSerivesSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IDN_EmpHistoryTracking">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_EmpHistoryTracking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_EmpHistoryTracking_byEmp">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_EmpHistoryTracking_byEmp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_CustVisited_Emp_ByEmp">
+      <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_CustVisited_Emp_ByEmp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="IDN_DMS_EmpCurrLocation">
       <soap:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_EmpCurrLocation" style="document" />
       <wsdl:input>
@@ -1517,6 +1721,33 @@
   </wsdl:binding>
   <wsdl:binding name="IDNWebSerivesSoap12" type="tns:IDNWebSerivesSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IDN_EmpHistoryTracking">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_EmpHistoryTracking" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_EmpHistoryTracking_byEmp">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_EmpHistoryTracking_byEmp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_CustVisited_Emp_ByEmp">
+      <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_CustVisited_Emp_ByEmp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="IDN_DMS_EmpCurrLocation">
       <soap12:operation soapAction="http://idn.com.vn/BSGKG_WebSrv/IDN_DMS_EmpCurrLocation" style="document" />
       <wsdl:input>
@@ -1736,6 +1967,33 @@
   </wsdl:binding>
   <wsdl:binding name="IDNWebSerivesHttpGet" type="tns:IDNWebSerivesHttpGet">
     <http:binding verb="GET" />
+    <wsdl:operation name="IDN_EmpHistoryTracking">
+      <http:operation location="/IDN_EmpHistoryTracking" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_EmpHistoryTracking_byEmp">
+      <http:operation location="/IDN_EmpHistoryTracking_byEmp" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_CustVisited_Emp_ByEmp">
+      <http:operation location="/IDN_DMS_CustVisited_Emp_ByEmp" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="IDN_DMS_EmpCurrLocation">
       <http:operation location="/IDN_DMS_EmpCurrLocation" />
       <wsdl:input>
@@ -1955,6 +2213,33 @@
   </wsdl:binding>
   <wsdl:binding name="IDNWebSerivesHttpPost" type="tns:IDNWebSerivesHttpPost">
     <http:binding verb="POST" />
+    <wsdl:operation name="IDN_EmpHistoryTracking">
+      <http:operation location="/IDN_EmpHistoryTracking" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_EmpHistoryTracking_byEmp">
+      <http:operation location="/IDN_EmpHistoryTracking_byEmp" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IDN_DMS_CustVisited_Emp_ByEmp">
+      <http:operation location="/IDN_DMS_CustVisited_Emp_ByEmp" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="IDN_DMS_EmpCurrLocation">
       <http:operation location="/IDN_DMS_EmpCurrLocation" />
       <wsdl:input>

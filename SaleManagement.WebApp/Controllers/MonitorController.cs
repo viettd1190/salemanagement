@@ -164,5 +164,31 @@ namespace SaleManagement.WebApp.Controllers
             return Json(new List<EmpCustVisitedResponse>(),
                         "json");
         }
+
+        [HttpPost]
+        public ActionResult GetEmpHistoryTracking(int empId,
+                                                  string date)
+        {
+            try
+            {
+                DateTime dateTime;
+                if(DateTime.TryParse(date,out dateTime))
+                {
+                    var result = AppUtil.ConvertTo<EmpHistoryTrackingResponse>(ServiceClient.IDN_EmpHistoryTracking_byEmp(empId.ToString(),
+                                                                                                                          dateTime));
+                    if(result.Any())
+                    {
+                        return Json(result,
+                                    "json");
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Debug(e);
+            }
+            return Json(new List<EmpHistoryTrackingResponse>(),
+                        "json");
+        }
     }
 }
